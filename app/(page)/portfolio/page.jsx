@@ -1,6 +1,11 @@
+
+import MyPortfolio from './../../../src/page/myPortfolio/myPortfolio';
+
 const Portfolio = ()=> {
   return (
-    <div>Portfolio</div>
+    <div>
+      <MyPortfolio/>
+    </div>
   )
 }
 

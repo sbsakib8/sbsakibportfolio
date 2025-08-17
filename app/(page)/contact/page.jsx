@@ -1,6 +1,10 @@
+import MyContact from './../../../src/page/mycontact/myContact';
+
 const Contact = ()=> {
   return (
-    <div>Contact</div>
+    <div>
+      <MyContact/>
+    </div>
   )
 }
 
