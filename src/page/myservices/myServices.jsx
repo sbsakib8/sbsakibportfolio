@@ -154,7 +154,7 @@ const MyServices = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold  mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in">
+          <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in">
             আমার সেবা সমূহ
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-fade-in animation-delay-500">
@@ -189,7 +189,7 @@ const MyServices = () => {
                 {service.description}
               </p>
 
-              {/* Hover Effect Arrow */}
+              {/* Hover  */}
               <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
                 <Zap className="w-6 h-6 text-purple-400" />
               </div>
