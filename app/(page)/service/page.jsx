@@ -1,10 +1,10 @@
 import React from 'react'
-import MyService from '../../../src/page/myservices/myServices'
+import MyServices from './../../../src/page/myservices/myServices';
 
 const  Servicepage =()=> {
   return (
     <div>
-        <MyService/>
+        <MyServices/>
     </div>
   )
 }
