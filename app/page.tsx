@@ -1,9 +1,9 @@
-import Image from "next/image";
+import MyHome from './../src/page/home/home';
 
 export default function Home() {
   return (
     <>
-    <h2 className=" text-red-500 bg-amber-300 p-4">hello sakib </h2>
+    <MyHome/>
     </>
   );
 }
