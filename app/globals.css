@@ -28,3 +28,25 @@ body {
 .container{
     @apply p-3 md:px-4 lg:px-5 xl:px-10  ;
 }
+
+/* resume section start */
+.button_components{
+    @apply flex flex-col gap-2 space-y-3 mt-10 2xl:space-y-6 ;
+}
+.button_router{
+  @apply bg-gray-700 w-[300px] 2xl:w-[560px] 2xl:py-4 rounded-full cursor-pointer 2xl:text-4xl hover:bg-[#b656b3] hover:text-black transition-all duration-300 hover:shadow-lg;
+}
+
+.resume_title{
+    @apply  text-center text-[30px] 2xl:text-[70px] 2xl:mb-10 font-bold text-[#b656b3] ;
+}
+.resume_paragraph{
+    @apply  max-w-[400px] lg:max-w-[570px] 2xl:max-w-[700px] text-center 2xl:text-3xl text-wrap text-[20px] leading-[30px] 2xl:leading-[40px] text-gray-400;
+}
+.resume_about_p{
+    @apply text-[23px] text-[#b656b3]  py-2 ;
+}
+.resume_about_span{
+    @apply  text-[17px] text-gray-300;
+}
+
