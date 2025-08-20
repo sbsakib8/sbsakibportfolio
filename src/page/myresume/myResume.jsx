@@ -610,6 +610,25 @@ const MyResume = () => {
           -webkit-text-fill-color: transparent;
         }
         .animate-spin-slow { animation: spin 3s linear infinite; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: rgba(15, 23, 42, 0.5);
+          border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(to bottom, #06b6d4, #3b82f6);
+          border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(to bottom, #0891b2, #2563eb);
+        }
       `}</style>
     </div>
   );
