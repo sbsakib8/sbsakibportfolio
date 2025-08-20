@@ -1,7 +1,11 @@
-const About = ()=> {
+import MyResume from "../../../src/page/myresume/myResume"
+
+const Resume= ()=> {
   return (
-    <div>About</div>
+    <div>
+        <MyResume/>
+    </div>
   )
 }
 
-export default About
+export default Resume
