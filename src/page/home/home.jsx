@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import { BiLogoFacebookCircle } from "react-icons/bi";
 import { TiSocialLinkedinCircular } from "react-icons/ti";
-import { FaInstagramSquare } from "react-icons/fa";
+import { FaInstagramSquare, FaPython } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 import { FaCode, FaDatabase, FaServer, FaMobile } from "react-icons/fa";
+import Link from 'next/link';
 
 // Loading Component
 const LoadingScreen = ({ onComplete }) => {
@@ -24,7 +25,7 @@ const LoadingScreen = ({ onComplete }) => {
         const interval = setInterval(() => {
             setProgress(prev => {
                 const newProgress = prev + Math.random() * 15 + 5;
-                
+
                 // Update loading text based on progress
                 if (newProgress > 80) setLoadingText(texts[4]);
                 else if (newProgress > 60) setLoadingText(texts[3]);
@@ -98,7 +99,7 @@ const LoadingScreen = ({ onComplete }) => {
                                 </linearGradient>
                             </defs>
                         </svg>
-                        
+
                         {/* Progress Text */}
                         <div className="absolute inset-0 flex items-center justify-center">
                             <span className="text-2xl font-bold text-white">{Math.round(progress)}%</span>
@@ -108,7 +109,7 @@ const LoadingScreen = ({ onComplete }) => {
                     {/* Loading Text */}
                     <div className="space-y-2">
                         <p className="text-xl text-gray-300 animate-pulse">{loadingText}</p>
-                        
+
                         {/* Animated Dots */}
                         <div className="flex justify-center space-x-2">
                             <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
@@ -127,7 +128,7 @@ const AboutTyping = () => {
     return (
         <span className='bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent font-bold'>
             <Typewriter
-                words={['Web Developer', 'Frontend Developer', 'Backend Developer', 'Full Stack Developer', 'MERN Stack Developer']}
+                words={['Ai Agent', 'Python Developer', 'Frontend Developer', 'Backend Developer', 'Full Stack Developer', 'MERN Stack Developer']}
                 loop={0}
                 cursor
                 cursorStyle='|'
@@ -145,7 +146,8 @@ const SkillIcons = ({ isVisible }) => {
         { icon: FaCode, label: "Frontend", color: "from-blue-500 to-cyan-500" },
         { icon: FaDatabase, label: "Database", color: "from-green-500 to-emerald-500" },
         { icon: FaServer, label: "Backend", color: "from-purple-500 to-pink-500" },
-        { icon: FaMobile, label: "Mobile", color: "from-orange-500 to-red-500" }
+        { icon: FaMobile, label: "Mobile", color: "from-orange-500 to-red-500" },
+        { icon: FaPython, label: "Python", color: "from-sky-500 to-red-500" },
     ];
 
     return (
@@ -153,9 +155,8 @@ const SkillIcons = ({ isVisible }) => {
             {skills.map((skill, index) => (
                 <div
                     key={index}
-                    className={`group relative transform transition-all duration-700 delay-${index * 200} ${
-                        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                    }`}
+                    className={`group relative transform transition-all duration-700 delay-${index * 200} ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                        }`}
                 >
                     <div className={`p-3 sm:p-4 rounded-2xl bg-gradient-to-r ${skill.color} transform transition-all duration-500 hover:scale-110 hover:rotate-12 shadow-lg hover:shadow-2xl`}>
                         <skill.icon className="text-white text-xl sm:text-2xl lg:text-3xl" />
@@ -208,9 +209,8 @@ const MediaAndButton = ({ isVisible }) => {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`p-3 rounded-full bg-gradient-to-r ${link.color} text-white transform transition-all duration-700 delay-${index * 100} hover:scale-125 ${link.hoverColor} hover:shadow-xl hover:rotate-12 ${
-                            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                        }`}
+                        className={`p-3 rounded-full bg-gradient-to-r ${link.color} text-white transform transition-all duration-700 delay-${index * 100} hover:scale-125 ${link.hoverColor} hover:shadow-xl hover:rotate-12 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                            }`}
                     >
                         <link.icon className="text-xl sm:text-2xl lg:text-3xl" />
                     </a>
@@ -219,22 +219,30 @@ const MediaAndButton = ({ isVisible }) => {
 
             {/* Buttons */}
             <div className="flex flex-col px-9 md:px-1 sm:flex-row justify-center lg:justify-start gap-4 sm:gap-6">
-                <button className={`group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-700 hover:-translate-y-3 hover:scale-110 ${
-                    isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                }`} style={{ transitionDelay: '600ms' }}>
+                <Link
+                    href="/resume.pdf"
+                    download="Sakib_Hossain_Resume.pdf"
+                    className={`group cursor-pointer relative overflow-hidden px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-700 hover:-translate-y-3 hover:scale-110 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                        }`}
+                    style={{ transitionDelay: '600ms' }}
+                >
                     <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     <span className="relative z-10 text-lg">Download Resume</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                </button>
+                </Link>
 
-                <button className={`group relative overflow-hidden px-8 py-4 border-2 border-gradient bg-gray-900/50 backdrop-blur-sm text-white font-semibold rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-700 hover:-translate-y-3 hover:scale-110 border-purple-500/50 hover:border-purple-400 ${
-                    isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                }`} style={{ transitionDelay: '700ms' }}>
+                <Link
+                    href="/contact"
+                    className={`group cursor-pointer relative overflow-hidden px-8 py-4 border-2 border-gradient bg-gray-900/50 backdrop-blur-sm text-white font-semibold rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-700 hover:-translate-y-3 hover:scale-110 border-purple-500/50 hover:border-purple-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                        }`}
+                    style={{ transitionDelay: '700ms' }}
+                >
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-0 group-hover:scale-100"></div>
                     <span className="relative z-10 text-lg">Get In Touch</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                </button>
+                </Link>
             </div>
+
         </div>
     );
 };
@@ -365,21 +373,18 @@ const MyHome = () => {
                 <div className="flex flex-col lg:flex-row items-center justify-between min-h-screen gap-12 lg:gap-16 py-20">
 
                     {/* Content Section */}
-                    <div className={`flex-1 text-center lg:text-left space-y-8 max-w-2xl transform transition-all duration-1000 ${
-                        contentVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-                    }`}>
-                        {/* Badge */}
-                        <div className={`inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-500/30 rounded-full mb-6 transform transition-all duration-700 delay-200 hover:scale-110 hover:shadow-lg ${
-                            contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                    <div className={`flex-1 text-center lg:text-left space-y-8 max-w-2xl transform transition-all duration-1000 ${contentVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                         }`}>
+                        {/* Badge */}
+                        <div className={`inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-500/30 rounded-full mb-6 transform transition-all duration-700 delay-200 hover:scale-110 hover:shadow-lg ${contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                            }`}>
                             <div className="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse"></div>
                             <span className="text-gray-300 text-sm font-medium">Available for Work</span>
                         </div>
 
                         {/* Main Heading */}
-                        <div className={`space-y-4 transform transition-all duration-1000 delay-300 ${
-                            contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                        }`}>
+                        <div className={`space-y-4 transform transition-all duration-1000 delay-300 ${contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                            }`}>
                             <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight">
                                 <span className="block text-white text-2xl md:text-3xl animate-fade-in-up">Hello, I'm</span>
                                 <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient text-3xl md:text-4xl lg:text-5xl my-2 hover:scale-105 transition-transform duration-300">
@@ -396,9 +401,8 @@ const MyHome = () => {
                         <SkillIcons isVisible={contentVisible} />
 
                         {/* Description */}
-                        <p className={`text-lg sm:text-xl text-gray-400 leading-relaxed max-w-2xl transform transition-all duration-1000 delay-500 ${
-                            contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                        }`}>
+                        <p className={`text-lg sm:text-xl text-gray-400 leading-relaxed max-w-2xl transform transition-all duration-1000 delay-500 ${contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                            }`}>
                             I craft digital experiences with modern technologies. Specialized in building
                             <span className="text-blue-400 font-semibold"> responsive web applications </span>
                             using the MERN stack. From concept to deployment, I ensure
@@ -407,12 +411,11 @@ const MyHome = () => {
                         </p>
 
                         {/* Enhanced Stats */}
-                        <div className={`flex justify-center lg:justify-start space-x-8 py-6 transform transition-all duration-1000 delay-600 ${
-                            contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                        }`}>
+                        <div className={`flex justify-center lg:justify-start space-x-8 py-6 transform transition-all duration-1000 delay-600 ${contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                            }`}>
                             {[
-                                { number: "2+", label: "Years Experience" },
-                                { number: "50+", label: "Projects Done" },
+                                { number: "3+", label: "Years Experience" },
+                                { number: "55+", label: "Projects Done" },
                                 { number: "100%", label: "Client Satisfaction" }
                             ].map((stat, index) => (
                                 <div key={index} className="text-center group hover:scale-110 transition-transform duration-300">
@@ -429,9 +432,8 @@ const MyHome = () => {
                     </div>
 
                     {/* Enhanced Image Section */}
-                    <div className={`flex-1 flex justify-center items-center transform transition-all duration-1000 delay-400 ${
-                        contentVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
-                    }`}>
+                    <div className={`flex-1 flex justify-center items-center transform transition-all duration-1000 delay-400 ${contentVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+                        }`}>
                         <div className="relative group">
                             {/* Enhanced Animated Rings */}
                             <div className="absolute -inset-12 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 opacity-20 animate-spin-slow blur-sm"></div>

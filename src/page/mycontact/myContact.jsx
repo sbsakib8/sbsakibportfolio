@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { Send, Mail, Phone, MapPin, Github, Linkedin, Twitter, User, MessageSquare, CheckCircle, AlertCircle, Calendar, Clock, Globe, Code, Loader } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, Github, Linkedin, Twitter, User, MessageSquare, CheckCircle, AlertCircle, Calendar, Clock, Globe, Code, Loader, Facebook } from 'lucide-react';
+import { BsWhatsapp } from 'react-icons/bs';
 
 const MyContact = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,7 +44,7 @@ const MyContact = () => {
       newErrors.email = 'Please enter a valid email address';
     }
 
-    // Phone validation (optional but if provided, should be valid)
+    // Phone validation 
     if (formData.phone.trim()) {
       const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
       if (!phoneRegex.test(formData.phone)) {
@@ -84,56 +85,87 @@ const MyContact = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (validateForm()) {
-      setIsSubmitting(true);
-      
-      // Simulate API call
-      setTimeout(() => {
-        setIsSubmitting(false);
+  e.preventDefault();
+
+  if (validateForm()) {
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "13a7b2f5-ab22-44e7-bf2d-442a70cd3628", 
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
         setSubmitted(true);
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
         });
-        
-        // Reset success message after 5 seconds
+        // Success message 5 sec পরে লুকাবে
         setTimeout(() => setSubmitted(false), 5000);
-      }, 2000);
+      } else {
+        alert("Something went wrong! Please try again.");
+      }
+    } catch (error) {
+      alert("Network error! Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
-  };
+  }
+};
+
 
   const contactInfo = [
     {
       icon: <Mail className="w-6 h-6" />,
       label: "Email",
-      value: "developer@example.com",
-      link: "mailto:developer@example.com",
+      value: "sakibhossain7397@gmail.com",
+      link: "mailto:sakibhossain7397@gmail.com",
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: <Phone className="w-6 h-6" />,
       label: "Phone",
-      value: "+880 1234-567890",
-      link: "tel:+8801234567890",
+      value: "+880 1626420774",
+      link: "tel:+8801626420774",
+      color: "from-green-500 to-emerald-500"
+    },
+    {
+      icon: <BsWhatsapp className="w-6 h-6" />,
+      label: "WhatsApp",
+      value: "+880 1626420774",
+      link: "https://wa.me/8801768820891",
       color: "from-green-500 to-emerald-500"
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       label: "Location",
-      value: "Dhaka, Bangladesh",
-      link: "https://maps.google.com",
+      value: "Dhaka, Gazipur, Bangladesh",
+      link: "https://shrturl.app/hONAlP",
       color: "from-red-500 to-pink-500"
     },
     {
       icon: <Globe className="w-6 h-6" />,
-      label: "Website",
-      value: "www.myportfolio.com",
-      link: "https://www.myportfolio.com",
+      label: "Company Website",
+      value: "www.programming-fighter.com",
+      link: "https://www.programming-fighter.com/",
       color: "from-purple-500 to-indigo-500"
     }
   ];
@@ -142,19 +174,19 @@ const MyContact = () => {
     {
       icon: <Github className="w-6 h-6" />,
       label: "GitHub",
-      link: "https://github.com/username",
+      link: "https://github.com/sbsakib8",
       color: "hover:text-gray-400"
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       label: "LinkedIn", 
-      link: "https://linkedin.com/in/username",
+      link: "https://www.linkedin.com/in/sb-sakib-sarkar-5823202b9/",
       color: "hover:text-blue-500"
     },
     {
-      icon: <Twitter className="w-6 h-6" />,
+      icon: <Facebook className="w-6 h-6" />,
       label: "Twitter",
-      link: "https://twitter.com/username",
+      link: "https://www.facebook.com/sbsakibsarkar/",
       color: "hover:text-sky-500"
     }
   ];
@@ -249,7 +281,8 @@ const MyContact = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-spin-slow opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
                     <div className="absolute inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-spin-reverse opacity-20"></div>
                     <div className="absolute inset-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Code className="w-20 h-20 text-white animate-bounce-slow" />
+                      {/* <Code className="w-20 h-20 text-white animate-bounce-slow" /> */}
+                      <img src="mypic/sbsakib.jpg" className=' w-[150px] h-[150px] rounded-full' alt="" />
                     </div>
                     {/* Orbiting elements */}
                     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyan-400 rounded-full animate-orbit opacity-80"></div>
@@ -257,7 +290,7 @@ const MyContact = () => {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2 animate-fade-in animation-delay-800">MERN Stack Developer</h3>
-                <p className="text-gray-300 mb-4 animate-fade-in animation-delay-900">Full-Stack Development Specialist</p>
+                <p className="text-gray-300 mb-4 animate-fade-in animation-delay-900">Front End || Full-Stack || Ai Agent || Python Development</p>
                 
                 {/* Enhanced Status */}
                 <div className="flex items-center justify-center space-x-2 text-green-400 mb-6 animate-fade-in animation-delay-1000">
@@ -432,8 +465,9 @@ const MyContact = () => {
                     <option value="" className="bg-slate-800">Select a subject</option>
                     <option value="web-development" className="bg-slate-800">Web Development Project</option>
                     <option value="mobile-app" className="bg-slate-800">Mobile App Development</option>
-                    <option value="consultation" className="bg-slate-800">Technical Consultation</option>
+                    <option value="Technical Consultation" className="bg-slate-800">Technical Consultation</option>
                     <option value="collaboration" className="bg-slate-800">Collaboration Opportunity</option>
+                    <option value="AI Agent" className="bg-slate-800">AI Agent</option>
                     <option value="other" className="bg-slate-800">Other</option>
                   </select>
                   {errors.subject && (
