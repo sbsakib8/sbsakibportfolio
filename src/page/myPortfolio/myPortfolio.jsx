@@ -409,9 +409,9 @@ const MyPortfolio = () => {
 
               <button
                 onClick={closeModal}
-                className="absolute top-6 right-6 text-white hover:text-gray-200 transition-all duration-300 p-3 rounded-full hover:bg-white/20 transform hover:scale-110 hover:rotate-90 z-10"
+                className="absolute top-2 right-2  text-white hover:text-gray-200 transition-all duration-300 p-3 rounded-full hover:bg-white/20 transform hover:scale-110 hover:rotate-90 z-10"
               >
-                <X className="w-6 h-6" />
+                <X className="w-6 h-6 " />
               </button>
               
               <div className="relative z-10">
