@@ -15,7 +15,7 @@ const MyPortfolio = () => {
       description: "Complete e-commerce solution with payment gateway, inventory management and admin dashboard",
       cover: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop",
       liveDemo: "https://demo-ecommerce.com",
-      githubRepo: "https://github.com/username/ecommerce-platform",
+      githubRepo: "https://github.com/sbsakib8",
       technologies: ["React.js", "Node.js", "MongoDB", "Stripe", "JWT", "Redux"],
       details: {
         overview: "A comprehensive e-commerce platform where users can browse products, add to cart, and make secure payments. Includes an admin panel for inventory management and order tracking.",
@@ -42,7 +42,7 @@ const MyPortfolio = () => {
       description: "Intelligent chatbot with NLP capabilities for customer support automation",
       cover: "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=500&h=300&fit=crop",
       liveDemo: "https://ai-chatbot-demo.com",
-      githubRepo: "https://github.com/username/ai-chatbot",
+      githubRepo: "https://github.com/sbsakib8",
       technologies: ["Python", "TensorFlow", "OpenAI API", "FastAPI", "React", "WebSocket"],
       details: {
         overview: "An AI-powered chatbot that processes natural language to handle customer queries. Built with machine learning models trained to understand context and provide appropriate responses.",
@@ -69,7 +69,7 @@ const MyPortfolio = () => {
       description: "Interactive dashboard for business intelligence and data visualization",
       cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
       liveDemo: "https://analytics-dashboard-demo.com",
-      githubRepo: "https://github.com/username/analytics-dashboard",
+      githubRepo: "https://github.com/sbsakib8",
       technologies: ["Python", "Django", "Pandas", "Plotly", "PostgreSQL", "Celery"],
       details: {
         overview: "A business intelligence dashboard that visualizes complex data through interactive charts and graphs. Features real-time data processing and automated reporting system.",
@@ -96,7 +96,7 @@ const MyPortfolio = () => {
       description: "Cross-platform mobile app for team collaboration and project management",
       cover: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop",
       liveDemo: "https://taskmanager-app.com",
-      githubRepo: "https://github.com/username/task-manager-app",
+      githubRepo: "https://github.com/sbsakib8",
       technologies: ["React Native", "Expo", "Firebase", "Redux", "Async Storage"],
       details: {
         overview: "A mobile app for team collaboration where tasks can be assigned, progress tracked, and team members can communicate. Features offline support and push notifications.",
@@ -123,7 +123,7 @@ const MyPortfolio = () => {
       description: "Point of sale system for restaurants with inventory and staff management",
       cover: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&h=300&fit=crop",
       liveDemo: "https://restaurant-pos-demo.com",
-      githubRepo: "https://github.com/username/restaurant-pos",
+      githubRepo: "https://github.com/sbsakib8",
       technologies: ["Vue.js", "Node.js", "Express", "MySQL", "Socket.io", "Electron"],
       details: {
         overview: "A complete POS system for restaurant management including order management, inventory tracking, staff scheduling, and sales analytics.",
@@ -150,7 +150,7 @@ const MyPortfolio = () => {
       description: "Online learning platform with video streaming and progress tracking",
       cover: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500&h=300&fit=crop",
       liveDemo: "https://lms-platform-demo.com",
-      githubRepo: "https://github.com/username/lms-platform",
+      githubRepo: "https://github.com/sbsakib8",
       technologies: ["React", "Node.js", "MongoDB", "AWS S3", "WebRTC", "Stripe"],
       details: {
         overview: "An online education platform where instructors can create courses and students can enroll to watch video lessons. Features progress tracking and certification system.",
@@ -281,14 +281,14 @@ const MyPortfolio = () => {
           <div className="flex justify-center space-x-8 mt-8">
             <div className="text-center animate-fade-in-up animation-delay-500">
               <div className="text-2xl font-bold text-white">{projects.length}+</div>
-              <div className="text-gray-400">Projects</div>
+              <div className="text-gray-400"> Top Projects</div>
             </div>
             <div className="text-center animate-fade-in-up animation-delay-700">
               <div className="text-2xl font-bold text-white">15+</div>
               <div className="text-gray-400">Technologies</div>
             </div>
             <div className="text-center animate-fade-in-up animation-delay-900">
-              <div className="text-2xl font-bold text-white">2+</div>
+              <div className="text-2xl font-bold text-white">3+</div>
               <div className="text-gray-400">Years Experience</div>
             </div>
           </div>

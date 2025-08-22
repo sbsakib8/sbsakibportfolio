@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { User, Briefcase, GraduationCap, Code, Award, Mail, Phone, MapPin, Calendar, Download, Eye, Star, Trophy, Target, Zap } from 'lucide-react';
+import Link from 'next/link';
 
 const MyResume = () => {
   const [activeSection, setActiveSection] = useState('about');
@@ -27,8 +28,8 @@ const MyResume = () => {
   ];
 
   const stats = [
-    { label: 'Projects Completed', value: '50+', icon: Trophy, delay: '0s' },
-    { label: 'Happy Clients', value: '25+', icon: Star, delay: '0.2s' },
+    { label: 'Projects Completed', value: '100+', icon: Trophy, delay: '0s' },
+    { label: 'Happy Clients', value: '50+', icon: Star, delay: '0.2s' },
     { label: 'Years Experience', value: '3+', icon: Zap, delay: '0.4s' },
     { label: 'Code Commits', value: '1000+', icon: Code, delay: '0.6s' }
   ];
@@ -41,26 +42,26 @@ const MyResume = () => {
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="relative">
               <div className="w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white text-4xl font-bold shadow-2xl animate-bounce">
-                SB
+                <img src="mypic/sakib3.webp" className=' w-[120px] h-[120px] rounded-full' alt="" />
               </div>
               <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-gray-800 animate-pulse"></div>
             </div>
             <div className="text-center md:text-left">
               <h3 className="text-2xl font-bold text-cyan-400 mb-2">SB Sakib Sarkar</h3>
-              <p className="text-gray-300 text-lg mb-2">Full-Stack Web Developer</p>
+              <p className="text-gray-300 text-lg mb-2">Front End || MERN-Stack || Ai Agent || Python Developer</p>
               <div className="flex items-center gap-2 justify-center md:justify-start">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                 <span className="text-green-400 text-sm">Available for work</span>
               </div>
             </div>
           </div>
-          
+
           <div className="bg-gray-800/50 p-6 rounded-xl border border-cyan-500/20 backdrop-blur-sm">
             <p className="text-gray-300 leading-relaxed text-lg">
               I am SB Sakib Sarkar, a passionate full-stack web developer who specializes in the MERN Stack (MongoDB, Express.js, React.js, Node.js). I learned my skills online and I am still constantly learning new technologies and applying them to my projects.
             </p>
           </div>
-          
+
           <div className="bg-gray-800/50 p-6 rounded-xl border border-cyan-500/20 backdrop-blur-sm">
             <p className="text-gray-300 leading-relaxed text-lg">
               I find logic in solving any problem, and love creating clean and responsive designs. Web development is my passion — because it allows me to solve real problems through code. I am currently looking for opportunities where I can use my skills to work on real-world projects, learn with a team, and contribute to the growth of the company.
@@ -78,24 +79,26 @@ const MyResume = () => {
             </div>
             <div className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors duration-300 hover:scale-105 transform">
               <Mail className="w-5 h-5 text-cyan-400" />
-              <span>sakib@example.com</span>
+              <span>sakibhossain7397@gmail.com</span>
             </div>
             <div className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors duration-300 hover:scale-105 transform">
               <MapPin className="w-5 h-5 text-cyan-400" />
-              <span>Dhaka, Bangladesh</span>
+              <span>Dhaka, Gazipur, Bangladesh</span>
             </div>
           </div>
 
           {/* Quick Actions */}
           <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-            <button className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl">
+            <Link href="/resume.pdf"
+              download="Sakib_Hossain_Resume.pdf"
+              className="flex items-center gap-2 cursor-pointer px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl">
               <Download className="w-4 h-4" />
               Download CV
-            </button>
-            <button className="flex items-center gap-2 px-6 py-3 bg-gray-700/50 text-gray-300 rounded-xl hover:bg-gray-600/50 hover:scale-105 transition-all duration-300 border border-cyan-500/30">
+            </Link>
+            <Link href="https://www.programming-fighter.com/" target='_block' className="flex items-center gap-2 px-6 py-3 bg-gray-700/50 text-gray-300 rounded-xl hover:bg-gray-600/50 hover:scale-105 transition-all duration-300 border border-cyan-500/30">
               <Eye className="w-4 h-4" />
-              View Portfolio
-            </button>
+              View Project
+            </Link>
           </div>
         </div>
       )
@@ -108,23 +111,23 @@ const MyResume = () => {
             {
               title: "Full-Stack Developer",
               company: "Freelance",
-              period: "2022 - Present",
+              period: "2023 - 2024",
               description: "Developed multiple web applications using MERN stack. Created responsive designs and implemented complex business logic.",
               achievements: ["Built 15+ web applications", "Improved performance by 40%", "Client satisfaction 98%"]
             },
             {
               title: "Frontend Developer",
               company: "Tech Solutions",
-              period: "2021 - 2022",
+              period: "2022 - 2023",
               description: "Built user interfaces using React.js and implemented modern UI/UX designs with smooth animations.",
               achievements: ["Led UI/UX redesign project", "Reduced loading time by 60%", "Implemented 20+ components"]
             },
             {
               title: "Web Developer Intern",
-              company: "Digital Agency",
-              period: "2021",
+              company: "Programming Fighter Agency",
+              period: "2025",
               description: "Learned professional development practices and worked on real client projects under senior developer guidance.",
-              achievements: ["Completed 5 client projects", "Learned Git workflow", "Collaborated with 10+ developers"]
+              achievements: ["Completed 15 client projects", "Learned Git workflow", "Collaborated with 10+ developers"]
             }
           ].map((exp, index) => (
             <div key={index} className="bg-gray-800/50 p-6 rounded-xl border border-cyan-500/20 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300 hover:scale-105">
@@ -226,10 +229,12 @@ const MyResume = () => {
               category: "Frontend Development",
               skills: [
                 { name: "React.js", level: 90 },
-                { name: "JavaScript (ES6+)", level: 85 },
+                { name: "Next.js", level: 85 },
+                { name: "JavaScript (ES6+)", level: 80 },
+                { name: "Typescript", level: 89 },
                 { name: "HTML5 & CSS3", level: 95 },
-                { name: "Tailwind CSS", level: 88 },
-                { name: "Bootstrap", level: 82 }
+                { name: "Tailwind CSS", level: 95 },
+                { name: "Bootstrap", level: 87 }
               ],
               color: "from-blue-400 to-cyan-600"
             },
@@ -266,7 +271,7 @@ const MyResume = () => {
                       <span className="text-cyan-400 text-sm font-bold">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-gray-700 rounded-full h-2">
-                      <div 
+                      <div
                         className={`h-2 rounded-full bg-gradient-to-r ${skillGroup.color} transition-all duration-1000 ease-out`}
                         style={{ width: `${skill.level}%` }}
                       ></div>
@@ -285,11 +290,19 @@ const MyResume = () => {
         <div className="space-y-6 animate-fadeInUp">
           {[
             {
+              title: "Programming Fighter Project",
+              description: "Worked as a Frontend Developer at Programming Fighter, focusing on building responsive user interfaces, optimizing performance, and implementing modern UI/UX features to enhance user experience.",
+              technologies: ["Next.js","Javascript","React", "Redux", "Node.js", "Tailwind CSS", ],
+              icon: "🚀",
+              link: "https://www.programming-fighter.com/",
+              status: "Live"
+            },
+            {
               title: "E-commerce Platform",
               description: "Built a full-stack e-commerce platform with React, Node.js, and MongoDB featuring user authentication, payment integration, and admin panel.",
               technologies: ["React", "Node.js", "MongoDB", "Stripe API"],
               icon: "🛒",
-              link: "https://github.com/sakib",
+              link: "https://github.com/sbsakib8",
               status: "Live"
             },
             {
@@ -297,7 +310,7 @@ const MyResume = () => {
               description: "Created a collaborative task management application with real-time updates using Socket.io and modern UI design.",
               technologies: ["React", "Socket.io", "Express", "JWT"],
               icon: "📝",
-              link: "https://github.com/sakib",
+              link: "https://github.com/sbsakib8",
               status: "Live"
             },
             {
@@ -305,7 +318,7 @@ const MyResume = () => {
               description: "Designed and developed a responsive portfolio website with smooth animations and modern design principles.",
               technologies: ["React", "Tailwind CSS", "Framer Motion"],
               icon: "🎨",
-              link: "https://sakibportfolio.com",
+              link: "https://github.com/sbsakib8",
               status: "Live"
             },
             {
@@ -313,7 +326,7 @@ const MyResume = () => {
               description: "Built a weather application with location-based forecasts, charts, and responsive design for all devices.",
               technologies: ["JavaScript", "Weather API", "Chart.js"],
               icon: "🌤️",
-              link: "https://github.com/sakib",
+              link: "https://github.com/sbsakib8",
               status: "Development"
             }
           ].map((achievement, index) => (
@@ -332,7 +345,7 @@ const MyResume = () => {
               <p className="text-gray-300 mb-4 leading-relaxed">{achievement.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {achievement.technologies.map((tech, techIndex) => (
-                  <span 
+                  <span
                     key={techIndex}
                     className="px-3 py-1 text-xs bg-cyan-500/20 text-cyan-400 rounded-full border border-cyan-500/30"
                   >
@@ -340,13 +353,14 @@ const MyResume = () => {
                   </span>
                 ))}
               </div>
-              <a 
-                href={achievement.link} 
+              <Link
+                href={achievement.link}
+                target="_blank"
                 className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
               >
                 <Eye className="w-4 h-4" />
                 View Project
-              </a>
+              </Link>
             </div>
           ))}
         </div>
@@ -487,19 +501,19 @@ const MyResume = () => {
       <div className={`relative z-10 py-12 transition-all duration-1000 ${headerVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-6 animate-textShine">
-            SB Sakib Sarkar
+            My Resume
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
             Passionate Full-Stack Developer crafting innovative web solutions that bring ideas to life
           </p>
-          
+
           {/* Animated Stats */}
           <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8 transition-all duration-1000 ${statsVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 hover:scale-105 animate-slideInUp"
                   style={{ animationDelay: stat.delay }}
                 >
@@ -515,14 +529,14 @@ const MyResume = () => {
 
       <div className="relative z-10 container mx-auto px-4 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
-          
+
           {/* Left Sidebar - Navigation */}
           <div className="lg:col-span-4 xl:col-span-3">
             <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/20 sticky top-8">
               <h2 className="text-3xl font-bold text-cyan-400 mb-8 text-center">
                 Why Hire Me?
               </h2>
-              
+
               <div className="space-y-3 mb-8">
                 <p className="text-gray-300 text-center leading-relaxed">
                   I'm not just a coder — I'm a problem solver. I think about each project in my own way, so that it really works for the user.
@@ -536,11 +550,10 @@ const MyResume = () => {
                     <button
                       key={section.id}
                       onClick={() => setActiveSection(section.id)}
-                      className={`w-full p-4 rounded-xl flex items-center gap-3 transition-all duration-300 transform hover:scale-105 ${
-                        activeSection === section.id
+                      className={`w-full p-4 rounded-xl flex items-center gap-3 transition-all duration-300 transform hover:scale-105 ${activeSection === section.id
                           ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-2xl scale-105'
                           : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/50 hover:text-cyan-400'
-                      }`}
+                        }`}
                     >
                       <Icon className="w-5 h-5" />
                       <span className="font-medium">{section.label}</span>
@@ -564,7 +577,7 @@ const MyResume = () => {
                     {content[activeSection].title}
                   </h2>
                 </div>
-                
+
                 <div className="overflow-y-auto max-h-[70vh] pr-2 scrollbar-thin scrollbar-thumb-cyan-500/30 scrollbar-track-transparent">
                   {content[activeSection].data}
                 </div>

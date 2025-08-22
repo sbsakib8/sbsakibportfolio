@@ -445,7 +445,7 @@ const MyHome = () => {
                                 {/* Image */}
                                 <img
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    src="mypic/about.png"
+                                    src="mypic/sbsakib.jpg"
                                     alt="SB Sakib Sarkar"
                                 />
 

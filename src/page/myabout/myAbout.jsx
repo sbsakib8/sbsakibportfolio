@@ -284,9 +284,9 @@ const MyAbout = () => {
             {/* Professional Image */}
             <div className={`bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-8 transition-all duration-1000 delay-400 transform ${visibleElements.profileCard ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               <div className="aspect-square rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center mb-6 relative overflow-hidden group">
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400 to-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                <div className="w-64 h-64 rounded-full bg-gradient-to-br from-cyan-400 to-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                   {/* <Code className="w-16 h-16 text-white animate-pulse" /> */}
-                   <img src="mypic/sbsakib.jpg" className=' w-[120px] h-[120px] rounded-full' alt="" />
+                   <img src="mypic/sakib1.webp" className=' w-[250px] h-[250px] rounded-full' alt="" />
                 </div>
                 <div className="absolute top-4 right-4 w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
                 <div className="absolute bottom-4 left-4 w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></div>

@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Code, Brain, Database, Server, Smartphone, Globe, Bot, Zap, Settings, X, Loader2, Sparkles, CheckCircle, Star, ArrowRight, Clock, Users, Target, TrendingUp } from 'lucide-react';
+import Link from 'next/link';
 
 const MyServices = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -448,10 +449,10 @@ const MyServices = () => {
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
               Let's discuss how I can help bring your ideas to life with cutting-edge technology and expert development.
             </p>
-            <button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-2 mx-auto">
+            <Link href={"/contact"} className="bg-gradient-to-r w-[200px] cursor-pointer from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-2 mx-auto">
               <span>Get In Touch</span>
               <ArrowRight className="w-5 h-5" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -467,7 +468,7 @@ const MyServices = () => {
               
               <button
                 onClick={closeModal}
-                className="absolute top-6 right-6 text-white hover:text-gray-200 transition-all duration-300 p-2 rounded-full hover:bg-white/20 hover:scale-110 z-10"
+                className="absolute top-2 right-2 cursor-pointer text-white hover:text-gray-200 transition-all duration-300 p-2 rounded-full hover:bg-white/20 hover:scale-110 z-10"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -570,7 +571,7 @@ const MyServices = () => {
               <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 p-6 rounded-xl border border-purple-500/20 text-center animate-fade-in animation-delay-800">
                 <h5 className="text-xl font-bold text-white mb-2">Interested in this service?</h5>
                 <p className="text-gray-300 mb-4">Let's discuss how I can help bring your project to life</p>
-                <button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-2 mx-auto">
+                <button className="bg-gradient-to-r cursor-pointer from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-2 mx-auto">
                   <span>Start Project</span>
                   <ArrowRight className="w-5 h-5" />
                 </button>
