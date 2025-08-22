@@ -415,7 +415,7 @@ const MyHome = () => {
                             }`}>
                             {[
                                 { number: "3+", label: "Years Experience" },
-                                { number: "55+", label: "Projects Done" },
+                                { number: "100+", label: "Projects Done" },
                                 { number: "100%", label: "Client Satisfaction" }
                             ].map((stat, index) => (
                                 <div key={index} className="text-center group hover:scale-110 transition-transform duration-300">

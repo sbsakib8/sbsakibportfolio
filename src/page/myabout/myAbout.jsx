@@ -34,7 +34,7 @@ const MyAbout = () => {
   // Animate numbers after loading
   useEffect(() => {
     if (!isLoading) {
-      const targets = { projects: 50, experience: 3, clients: 30, coffee: 1000 };
+      const targets = { projects: 100, experience: 3, clients: 50, coffee: 1000 };
       const duration = 2500;
       const steps = 80;
       const stepTime = duration / steps;
