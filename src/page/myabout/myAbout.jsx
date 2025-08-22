@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Code, Database, Brain, Globe, Award, Calendar, MapPin, Mail, Phone, Download, Play, Users, Coffee, BookOpen, Zap, Star, Heart, CheckCircle, ArrowRight, Loader2, Sparkles, TrendingUp, Target, Lightbulb } from 'lucide-react';
+import Link from 'next/link';
 
 const MyAbout = () => {
   const [activeTab, setActiveTab] = useState('about');
@@ -123,10 +124,10 @@ const MyAbout = () => {
   ];
 
   const personalInfo = [
-    { icon: <Calendar className="w-5 h-5" />, label: 'Date of Birth', value: 'January 15, 1998' },
-    { icon: <MapPin className="w-5 h-5" />, label: 'Location', value: 'Dhaka, Bangladesh' },
-    { icon: <Mail className="w-5 h-5" />, label: 'Email', value: 'jacob.aiden@email.com' },
-    { icon: <Phone className="w-5 h-5" />, label: 'Phone', value: '+880 1234-567890' }
+    { icon: <Calendar className="w-5 h-5" />, label: 'Date of Birth', value: 'May 29, 1995' },
+    { icon: <MapPin className="w-5 h-5" />, label: 'Location', value: 'Dhaka, Gazipur , Bangladesh' },
+    { icon: <Mail className="w-5 h-5" />, label: 'Email', value: 'sakibhossain7397@gmail.com' },
+    { icon: <Phone className="w-5 h-5" />, label: 'WhatsApp', value: '+880 1768820891' }
   ];
 
   const interests = [
@@ -283,21 +284,24 @@ const MyAbout = () => {
             {/* Professional Image */}
             <div className={`bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-8 transition-all duration-1000 delay-400 transform ${visibleElements.profileCard ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               <div className="aspect-square rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center mb-6 relative overflow-hidden group">
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400 to-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                  <Code className="w-16 h-16 text-white animate-pulse" />
+                <div className="w-64 h-64 rounded-full bg-gradient-to-br from-cyan-400 to-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                  {/* <Code className="w-16 h-16 text-white animate-pulse" /> */}
+                   <img src="mypic/sakib1.webp" className=' w-[250px] h-[250px] rounded-full' alt="" />
                 </div>
                 <div className="absolute top-4 right-4 w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
                 <div className="absolute bottom-4 left-4 w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
-              <h3 className="text-2xl font-bold text-white text-center mb-2">Jacob Aiden</h3>
-              <p className="text-cyan-400 text-center mb-4 font-semibold">Full-Stack Developer</p>
+              <h3 className="text-2xl font-bold text-white text-center mb-2">SB Sakib Sarkar</h3>
+              <p className="text-cyan-400 text-center mb-4 font-semibold">Front End || Full-Stack || Ai Agent || Python Developer</p>
               
-              <button className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
+              <Link href="/resume.pdf"
+                    download="Sakib_Hossain_Resume.pdf" 
+                   className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
                 <Download className="w-5 h-5" />
                 <span>Download CV</span>
-              </button>
+              </Link>
             </div>
 
             {/* Personal Information */}

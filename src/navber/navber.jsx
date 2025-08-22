@@ -209,9 +209,9 @@ const Navbar = ({ children }) => {
                 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}
             `}>
                 <div className="bg-gradient-to-br from-slate-950 via-gray-900 to-slate-900 h-full flex flex-col backdrop-blur-xl">
-                    {/* Animated Background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#0ef]/10 via-transparent to-violet-500/10 animate-pulse"></div>
-                    
+
+                
+
                     {/* Header */}
                     <div className="flex items-center justify-between p-8 border-b border-gray-700/50">
                         <Link 

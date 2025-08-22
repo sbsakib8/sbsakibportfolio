@@ -75,7 +75,6 @@ const MyContact = () => {
       [name]: value
     }));
 
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -118,7 +117,6 @@ const MyContact = () => {
           subject: "",
           message: "",
         });
-        // Success message 5 sec পরে লুকাবে
         setTimeout(() => setSubmitted(false), 5000);
       } else {
         alert("Something went wrong! Please try again.");
@@ -281,7 +279,6 @@ const MyContact = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-spin-slow opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
                     <div className="absolute inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-spin-reverse opacity-20"></div>
                     <div className="absolute inset-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      {/* <Code className="w-20 h-20 text-white animate-bounce-slow" /> */}
                       <img src="mypic/sbsakib.jpg" className=' w-[150px] h-[150px] rounded-full' alt="" />
                     </div>
                     {/* Orbiting elements */}
