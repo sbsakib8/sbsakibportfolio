@@ -220,7 +220,7 @@ const MediaAndButton = ({ isVisible }) => {
             {/* Buttons */}
             <div className="flex flex-col px-9 md:px-1 sm:flex-row justify-center lg:justify-start gap-4 sm:gap-6">
                 <Link
-                    href="/resume.pdf"
+                    href="cv/sbsakib-resume.pdf"
                     download="Sakib_Hossain_Resume.pdf"
                     className={`group cursor-pointer relative overflow-hidden px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-700 hover:-translate-y-3 hover:scale-110 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                         }`}

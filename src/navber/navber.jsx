@@ -47,61 +47,60 @@ const Navbar = ({ children }) => {
             {/* Desktop Sidebar */}
             <div className={`
                 hidden md:flex md:flex-col md:fixed md:top-0 md:left-0 md:h-full
-                ${open ? 'md:w-80 lg:w-72 xl:w-80' : 'md:w-20 lg:w-24 xl:w-28'} 
+                ${open ? 'md:w-72 lg:w-64 xl:w-72' : 'md:w-16 lg:w-18 xl:w-20'} 
                 duration-700 ease-in-out
                 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-900
                 backdrop-blur-xl border-r border-gray-700/50
                 shadow-2xl shadow-black/20 z-30
             `}>
                 
-                
                 {/* Toggle Button */}
-                <div className='flex justify-end p-6 lg:p-8'>
+                <div className='flex justify-end p-4 lg:p-5'>
                     <button
                         onClick={() => setOpen(!open)}
                         className={`
                             ${open ? 'rotate-180' : 'rotate-0'} 
                             duration-700 ease-in-out cursor-pointer 
-                            w-10 h-10 lg:w-12 lg:h-12 text-white hover:text-[#0ef] 
+                            w-8 h-8 lg:w-9 lg:h-9 text-white hover:text-[#0ef] 
                             transition-all rounded-full hover:bg-gray-700/50 hover:shadow-lg
                             flex items-center justify-center
                             hover:scale-110 active:scale-95
                             border border-gray-600/30 hover:border-[#0ef]/50
                         `}
                     >
-                        <HiOutlineChevronDoubleRight className="w-6 h-6 lg:w-7 lg:h-7" />
+                        <HiOutlineChevronDoubleRight className="w-5 h-5 lg:w-6 lg:h-6" />
                     </button>
                 </div>
 
                 {/* Logo */}
-                <div className={`${open ? 'block' : 'hidden'} text-center px-6 lg:px-8 mb-12 lg:mb-16`}>
+                <div className={`${open ? 'block' : 'hidden'} text-center px-4 lg:px-6 mb-8 lg:mb-10`}>
                     <Link 
                         href='/'
                         className="bg-gradient-to-r from-[#0ef] via-blue-400 to-violet-500 
-                                   bg-clip-text text-5xl lg:text-6xl xl:text-7xl font-black text-transparent 
+                                   bg-clip-text text-4xl lg:text-5xl xl:text-6xl font-black text-transparent 
                                    hover:scale-110 transition-all duration-500
                                    drop-shadow-2xl animate-pulse"
                     >
                         SB
                     </Link>
-                    <div className="w-16 h-1 bg-gradient-to-r from-[#0ef] to-violet-500 mx-auto mt-4 rounded-full animate-pulse"></div>
+                    <div className="w-12 h-0.5 bg-gradient-to-r from-[#0ef] to-violet-500 mx-auto mt-3 rounded-full animate-pulse"></div>
                 </div>
 
                 {/* Menu Items */}
-                <nav className='flex-1 px-6 lg:px-8 space-y-3 lg:space-y-4'>
+                <nav className='flex-1 px-4 lg:px-6 space-y-2 lg:space-y-3'>
                     {menus.map((item, index) => (
                         <Link
                             key={index}
                             href={item.link}
                             className={`
-                                group relative flex items-center gap-5 lg:gap-6 p-4 lg:p-5 xl:p-6 rounded-2xl
+                                group relative flex items-center gap-4 lg:gap-5 p-3 lg:p-4 xl:p-4 rounded-xl
                                 font-semibold transition-all duration-500 ease-out
                                 transform hover:scale-105 active:scale-95
                                 ${pathname === item.link 
                                     ? 'bg-gradient-to-r from-[#0ef]/20 via-blue-500/20 to-violet-500/20 text-white shadow-2xl shadow-[#0ef]/20 scale-105 border border-[#0ef]/30' 
                                     : 'text-gray-300 hover:bg-gradient-to-r hover:from-gray-800/50 hover:to-gray-700/50 hover:text-white hover:shadow-xl'
                                 }
-                                before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-r before:from-[#0ef]/0 before:to-violet-500/0
+                                before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r before:from-[#0ef]/0 before:to-violet-500/0
                                 hover:before:from-[#0ef]/10 hover:before:to-violet-500/10 before:transition-all before:duration-500
                                 backdrop-blur-sm
                             `}
@@ -110,7 +109,7 @@ const Navbar = ({ children }) => {
                             }}
                         >
                             <span className={`
-                                text-2xl lg:text-3xl xl:text-3xl transition-all duration-500
+                                text-xl lg:text-2xl xl:text-2xl transition-all duration-500
                                 ${pathname === item.link 
                                     ? 'scale-125 text-[#0ef] drop-shadow-lg' 
                                     : 'group-hover:scale-125 group-hover:text-[#0ef] group-hover:drop-shadow-lg'
@@ -122,7 +121,7 @@ const Navbar = ({ children }) => {
                             
                             <span 
                                 className={`
-                                    text-base lg:text-lg xl:text-xl font-semibold transition-all duration-700
+                                    text-sm lg:text-base xl:text-lg font-semibold transition-all duration-700
                                     ${!open && 'opacity-0 translate-x-32 overflow-hidden'}
                                     ${pathname === item.link ? 'text-white drop-shadow-md' : ''}
                                 `}
@@ -135,19 +134,19 @@ const Navbar = ({ children }) => {
 
                             {/* Active indicator */}
                             <div className={`
-                                absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-[#0ef] to-violet-500 rounded-r-full
+                                absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-gradient-to-b from-[#0ef] to-violet-500 rounded-r-full
                                 transition-all duration-500 ${pathname === item.link ? 'opacity-100' : 'opacity-0'}
                             `}></div>
 
                             {/* Hover effect line */}
-                            <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-[#0ef] to-violet-500 
+                            <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-[#0ef] to-violet-500 
                                           scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-full"></div>
 
                             {/* Tooltip for collapsed state */}
                             <span className={`
                                 ${open && 'opacity-0 pointer-events-none'} 
-                                absolute left-24 lg:left-28 xl:left-32 bg-gradient-to-r from-gray-900 to-gray-800 text-white text-sm lg:text-base
-                                px-4 py-3 rounded-xl shadow-2xl whitespace-nowrap
+                                absolute left-20 lg:left-22 xl:left-24 bg-gradient-to-r from-gray-900 to-gray-800 text-white text-sm
+                                px-3 py-2 rounded-lg shadow-2xl whitespace-nowrap
                                 transform scale-0 group-hover:scale-100 transition-all duration-300
                                 z-50 border border-gray-600/50 backdrop-blur-lg
                                 before:absolute before:-left-2 before:top-1/2 before:-translate-y-1/2 
@@ -160,7 +159,7 @@ const Navbar = ({ children }) => {
                 </nav>
 
                 {/* Bottom decoration */}
-                <div className="p-6 lg:p-8">
+                <div className="p-4 lg:p-6">
                     <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
                 </div>
             </div>
@@ -168,22 +167,22 @@ const Navbar = ({ children }) => {
             {/* Mobile Bottom Navigation */}
             <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
                 <div className="bg-gradient-to-r from-gray-900 via-slate-900 to-gray-900 backdrop-blur-lg shadow-2xl border-t border-gray-700/50">
-                    <div className="flex justify-around items-center py-3">
+                    <div className="flex justify-around items-center py-2">
                         {menus.slice(0, 5).map((item, index) => (
                             <Link
                                 key={index}
                                 href={item.link}
                                 onClick={handleLinkClick}
                                 className={`
-                                    flex flex-col items-center gap-1 p-3 rounded-xl transition-all duration-300
+                                    flex flex-col items-center gap-1 p-2 rounded-lg transition-all duration-300
                                     transform hover:scale-110 active:scale-95
                                     ${pathname === item.link 
-                                        ? 'text-[#0ef] scale-110 bg-gray-700/50 shadow-lg shadow-[#0ef]/20' 
+                                        ? 'text-[#0ef] scale-105 bg-gray-700/50 shadow-lg shadow-[#0ef]/20' 
                                         : 'text-gray-400 hover:text-white hover:bg-gray-700/30'
                                     }
                                 `}
                             >
-                                <span className={`text-xl transition-all duration-300 ${
+                                <span className={`text-lg transition-all duration-300 ${
                                     pathname === item.link ? 'drop-shadow-lg' : ''
                                 }`}>{item.icon}</span>
                                 <span className="text-xs font-medium">{item.menu}</span>
@@ -193,10 +192,10 @@ const Navbar = ({ children }) => {
                         {/* More menu for remaining items */}
                         <button
                             onClick={() => setMobileMenuOpen(true)}
-                            className="flex flex-col items-center gap-1 p-3 rounded-xl text-gray-400 hover:text-white 
+                            className="flex flex-col items-center gap-1 p-2 rounded-lg text-gray-400 hover:text-white 
                                      hover:bg-gray-700/30 transition-all duration-300 transform hover:scale-110 active:scale-95"
                         >
-                            <HiMenuAlt3 className="text-xl" />
+                            <HiMenuAlt3 className="text-lg" />
                             <span className="text-xs font-medium">More</span>
                         </button>
                     </div>
@@ -210,13 +209,11 @@ const Navbar = ({ children }) => {
             `}>
                 <div className="bg-gradient-to-br from-slate-950 via-gray-900 to-slate-900 h-full flex flex-col backdrop-blur-xl">
 
-                
-
                     {/* Header */}
-                    <div className="flex items-center justify-between p-8 border-b border-gray-700/50">
+                    <div className="flex items-center justify-between p-6 border-b border-gray-700/50">
                         <Link 
                             href='/'
-                            className="bg-gradient-to-r from-[#0ef] to-violet-500 bg-clip-text text-4xl font-black text-transparent
+                            className="bg-gradient-to-r from-[#0ef] to-violet-500 bg-clip-text text-3xl font-black text-transparent
                                      hover:scale-110 transition-transform duration-300 drop-shadow-lg"
                             onClick={handleLinkClick}
                         >
@@ -224,22 +221,22 @@ const Navbar = ({ children }) => {
                         </Link>
                         <button
                             onClick={() => setMobileMenuOpen(false)}
-                            className="text-white hover:text-[#0ef] transition-all duration-300 p-3 rounded-full
+                            className="text-white hover:text-[#0ef] transition-all duration-300 p-2 rounded-full
                                      hover:bg-gray-700/50 hover:scale-110 active:scale-95 border border-gray-600/30"
                         >
-                            <HiX className="w-7 h-7" />
+                            <HiX className="w-6 h-6" />
                         </button>
                     </div>
 
                     {/* Menu Items */}
-                    <nav className="flex-1 p-8 space-y-6">
+                    <nav className="flex-1 p-6 space-y-4">
                         {menus.map((item, index) => (
                             <Link
                                 key={index}
                                 href={item.link}
                                 onClick={handleLinkClick}
                                 className={`
-                                    flex items-center gap-6 p-5 rounded-2xl transition-all duration-500
+                                    flex items-center gap-5 p-4 rounded-xl transition-all duration-500
                                     transform hover:scale-105 active:scale-95
                                     ${pathname === item.link 
                                         ? 'bg-gradient-to-r from-[#0ef]/20 to-blue-500/20 text-white shadow-2xl shadow-[#0ef]/20 border border-[#0ef]/30' 
@@ -251,12 +248,12 @@ const Navbar = ({ children }) => {
                                     animationDelay: `${index * 100}ms`,
                                 }}
                             >
-                                <span className={`text-2xl transition-all duration-300 ${
+                                <span className={`text-xl transition-all duration-300 ${
                                     pathname === item.link 
                                         ? 'text-[#0ef] scale-125 drop-shadow-lg' 
                                         : 'group-hover:text-[#0ef] group-hover:scale-125'
                                 }`}>{item.icon}</span>
-                                <span className="text-xl font-semibold">{item.menu}</span>
+                                <span className="text-lg font-semibold">{item.menu}</span>
                             </Link>
                         ))}
                     </nav>
@@ -266,8 +263,8 @@ const Navbar = ({ children }) => {
             {/* Main Content */}
             <main className={`
                 min-h-screen transition-all duration-700 ease-in-out
-                ${open ? 'md:ml-80 lg:ml-72 xl:ml-80' : 'md:ml-20 lg:ml-24 xl:ml-28'}
-                pb-24 md:pb-0
+                ${open ? 'md:ml-72 lg:ml-64 xl:ml-72' : 'md:ml-16 lg:ml-18 xl:ml-20'}
+                pb-20 md:pb-0
             `}>
                 <div className="relative">
                     <div className="">

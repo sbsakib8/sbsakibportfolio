@@ -296,7 +296,7 @@ const MyAbout = () => {
               <h3 className="text-2xl font-bold text-white text-center mb-2">SB Sakib Sarkar</h3>
               <p className="text-cyan-400 text-center mb-4 font-semibold">Front End || Full-Stack || Ai Agent || Python Developer</p>
               
-              <Link href="/resume.pdf"
+              <Link  href="cv/sbsakib-resume.pdf"
                     download="Sakib_Hossain_Resume.pdf" 
                    className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
                 <Download className="w-5 h-5" />
