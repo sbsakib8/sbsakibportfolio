@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { User, Briefcase, GraduationCap, Code, Award, Mail, Phone, MapPin, Calendar, Download, Eye, Star, Trophy, Target, Zap } from 'lucide-react';
 import Link from 'next/link';
 
-const MyResume = () => {
+const MyResume = ({ dbExperiences, dbEducation }) => {
   const [activeSection, setActiveSection] = useState('about');
   const [isLoading, setIsLoading] = useState(true);
   const [headerVisible, setHeaderVisible] = useState(false);
@@ -107,7 +107,7 @@ const MyResume = () => {
       title: "Work Experience",
       data: (
         <div className="space-y-6 animate-fadeInUp">
-          {[
+          {(dbExperiences?.length > 0 ? dbExperiences : [
             {
               title: "Full-Stack Developer",
               company: "Freelance",
@@ -129,7 +129,7 @@ const MyResume = () => {
               description: "Learned professional development practices and worked on real client projects under senior developer guidance.",
               achievements: ["Completed 15 client projects", "Learned Git workflow", "Collaborated with 10+ developers"]
             }
-          ].map((exp, index) => (
+          ]).map((exp, index) => (
             <div key={index} className="bg-gray-800/50 p-6 rounded-xl border border-cyan-500/20 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300 hover:scale-105">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full flex items-center justify-center">
@@ -148,7 +148,7 @@ const MyResume = () => {
               <div className="space-y-2">
                 <h5 className="text-cyan-400 font-semibold">Key Achievements:</h5>
                 <ul className="space-y-1">
-                  {exp.achievements.map((achievement, i) => (
+                  {(exp.achievements || []).map((achievement, i) => (
                     <li key={i} className="text-gray-300 text-sm flex items-center gap-2">
                       <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
                       {achievement}
@@ -165,7 +165,7 @@ const MyResume = () => {
       title: "Education",
       data: (
         <div className="space-y-6 animate-fadeInUp">
-          {[
+          {(dbEducation?.length > 0 ? dbEducation : [
             {
               degree: "Bachelor of Science in Computer Science",
               institution: "University of Dhaka",
@@ -187,7 +187,7 @@ const MyResume = () => {
               grade: "GPA: 5.0/5.0",
               courses: ["General Mathematics", "Science", "English", "Bengali"]
             }
-          ].map((edu, index) => (
+          ]).map((edu, index) => (
             <div key={index} className="bg-gray-800/50 p-6 rounded-xl border border-cyan-500/20 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300 hover:scale-105">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full flex items-center justify-center">
@@ -208,7 +208,7 @@ const MyResume = () => {
               <div className="space-y-2">
                 <h5 className="text-cyan-400 font-semibold">Key Courses:</h5>
                 <div className="flex flex-wrap gap-2">
-                  {edu.courses.map((course, i) => (
+                  {(edu.courses || []).map((course, i) => (
                     <span key={i} className="px-3 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30">
                       {course}
                     </span>
