@@ -443,7 +443,7 @@ const MyHome = ({ dbProfile }) => {
                                 {/* Image */}
                                 <img
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    src={dbProfile?.avatarUrl || "mypic/sbsakib.jpg"}
+                                    src="mypic/sakibsarkar.jpeg"
                                     alt={dbProfile?.name || "SB Sakib Sarkar"}
                                 />
 

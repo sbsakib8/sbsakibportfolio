@@ -21,7 +21,7 @@ const Navbar = ({ children }) => {
                 setOpen(false);
             }
         };
-        
+
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
@@ -34,7 +34,7 @@ const Navbar = ({ children }) => {
         { menu: 'Resume', link: '/resume', icon: <GiSkills /> },
         { menu: 'Portfolio', link: '/portfolio', icon: <FaBriefcase /> },
         { menu: 'Contact', link: '/contact', icon: <MdOutlineContactPhone /> },
-        { menu: 'Dashboard', link: '/dashboard', icon: <MdDashboard /> },
+        { menu: 'DB', link: '/dashboard', icon: <MdDashboard /> },
     ];
 
     const handleLinkClick = () => {
@@ -57,10 +57,10 @@ const Navbar = ({ children }) => {
                 backdrop-blur-xl border-b border-gray-700/50
                 shadow-2xl shadow-black/20 z-30
             `}>
-                
+
                 {/* Logo */}
                 <div className="flex items-center">
-                    <Link 
+                    <Link
                         href='/'
                         className="bg-gradient-to-r from-[#0ef] via-blue-400 to-violet-500 
                                    bg-clip-text text-3xl lg:text-4xl font-black text-transparent 
@@ -81,13 +81,13 @@ const Navbar = ({ children }) => {
                                 group relative flex items-center p-2 rounded-xl
                                 font-semibold transition-all duration-300 ease-out
                                 transform hover:scale-110 active:scale-95
-                                ${pathname === item.link 
-                                    ? 'text-[#0ef] scale-110' 
+                                ${pathname === item.link
+                                    ? 'text-[#0ef] scale-110'
                                     : 'text-gray-300 hover:text-white'
                                 }
                             `}
                         >
-                            <span 
+                            <span
                                 className={`
                                     text-base lg:text-lg tracking-wide transition-all duration-300
                                     ${pathname === item.link ? 'text-[#0ef] drop-shadow-md' : 'group-hover:text-[#0ef] group-hover:drop-shadow-lg'}
@@ -122,19 +122,18 @@ const Navbar = ({ children }) => {
                                 className={`
                                     flex flex-col items-center gap-1 p-2 rounded-lg transition-all duration-300
                                     transform hover:scale-110 active:scale-95
-                                    ${pathname === item.link 
-                                        ? 'text-[#0ef] scale-105 bg-gray-700/50 shadow-lg shadow-[#0ef]/20' 
+                                    ${pathname === item.link
+                                        ? 'text-[#0ef] scale-105 bg-gray-700/50 shadow-lg shadow-[#0ef]/20'
                                         : 'text-gray-400 hover:text-white hover:bg-gray-700/30'
                                     }
                                 `}
                             >
-                                <span className={`text-lg transition-all duration-300 ${
-                                    pathname === item.link ? 'drop-shadow-lg' : ''
-                                }`}>{item.icon}</span>
+                                <span className={`text-lg transition-all duration-300 ${pathname === item.link ? 'drop-shadow-lg' : ''
+                                    }`}>{item.icon}</span>
                                 <span className="text-xs font-medium">{item.menu}</span>
                             </Link>
                         ))}
-                        
+
                         {/* More menu for remaining items */}
                         <button
                             onClick={() => setMobileMenuOpen(true)}
@@ -157,7 +156,7 @@ const Navbar = ({ children }) => {
 
                     {/* Header */}
                     <div className="flex items-center justify-between p-6 border-b border-gray-700/50">
-                        <Link 
+                        <Link
                             href='/'
                             className="bg-gradient-to-r from-[#0ef] to-violet-500 bg-clip-text text-3xl font-black text-transparent
                                      hover:scale-110 transition-transform duration-300 drop-shadow-lg"
@@ -184,8 +183,8 @@ const Navbar = ({ children }) => {
                                 className={`
                                     flex items-center gap-5 p-4 rounded-xl transition-all duration-500
                                     transform hover:scale-105 active:scale-95
-                                    ${pathname === item.link 
-                                        ? 'bg-gradient-to-r from-[#0ef]/20 to-blue-500/20 text-white shadow-2xl shadow-[#0ef]/20 border border-[#0ef]/30' 
+                                    ${pathname === item.link
+                                        ? 'bg-gradient-to-r from-[#0ef]/20 to-blue-500/20 text-white shadow-2xl shadow-[#0ef]/20 border border-[#0ef]/30'
                                         : 'text-gray-300 hover:bg-gradient-to-r hover:from-gray-800/50 hover:to-gray-700/50 hover:text-white'
                                     }
                                     backdrop-blur-sm
@@ -194,11 +193,10 @@ const Navbar = ({ children }) => {
                                     animationDelay: `${index * 100}ms`,
                                 }}
                             >
-                                <span className={`text-xl transition-all duration-300 ${
-                                    pathname === item.link 
-                                        ? 'text-[#0ef] scale-125 drop-shadow-lg' 
-                                        : 'group-hover:text-[#0ef] group-hover:scale-125'
-                                }`}>{item.icon}</span>
+                                <span className={`text-xl transition-all duration-300 ${pathname === item.link
+                                    ? 'text-[#0ef] scale-125 drop-shadow-lg'
+                                    : 'group-hover:text-[#0ef] group-hover:scale-125'
+                                    }`}>{item.icon}</span>
                                 <span className="text-lg font-semibold">{item.menu}</span>
                             </Link>
                         ))}
@@ -221,7 +219,7 @@ const Navbar = ({ children }) => {
 
             {/* Mobile menu overlay */}
             {mobileMenuOpen && (
-                <div 
+                <div
                     className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-500"
                     onClick={() => setMobileMenuOpen(false)}
                 />

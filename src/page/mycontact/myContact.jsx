@@ -84,58 +84,58 @@ const MyContact = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (validateForm()) {
-    setIsSubmitting(true);
+    if (validateForm()) {
+      setIsSubmitting(true);
 
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: "13a7b2f5-ab22-44e7-bf2d-442a70cd3628", 
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          message: formData.message,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setSubmitted(true);
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: "13a7b2f5-ab22-44e7-bf2d-442a70cd3628",
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            subject: formData.subject,
+            message: formData.message,
+          }),
         });
-        setTimeout(() => setSubmitted(false), 5000);
-      } else {
-        alert("Something went wrong! Please try again.");
+
+        const result = await response.json();
+
+        if (result.success) {
+          setSubmitted(true);
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            subject: "",
+            message: "",
+          });
+          setTimeout(() => setSubmitted(false), 5000);
+        } else {
+          alert("Something went wrong! Please try again.");
+        }
+      } catch (error) {
+        alert("Network error! Please try again.");
+      } finally {
+        setIsSubmitting(false);
       }
-    } catch (error) {
-      alert("Network error! Please try again.");
-    } finally {
-      setIsSubmitting(false);
     }
-  }
-};
+  };
 
 
   const contactInfo = [
     {
       icon: <Mail className="w-6 h-6" />,
       label: "Email",
-      value: "sakibhossain7397@gmail.com",
-      link: "mailto:sakibhossain7397@gmail.com",
+      value: "sbsakibsarkar8@gmail.com",
+      link: "mailto:sbsakibsarkar8@gmail.com",
       color: "from-blue-500 to-cyan-500"
     },
     {
@@ -161,9 +161,9 @@ const MyContact = () => {
     },
     {
       icon: <Globe className="w-6 h-6" />,
-      label: "Company Website",
-      value: "www.programming-fighter.com",
-      link: "https://www.programming-fighter.com/",
+      label: "e-commerce Website",
+      value: "easyshoppingmallbd.com",
+      link: "https://easyshoppingmallbd.com",
       color: "from-purple-500 to-indigo-500"
     }
   ];
@@ -177,7 +177,7 @@ const MyContact = () => {
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
-      label: "LinkedIn", 
+      label: "LinkedIn",
       link: "https://www.linkedin.com/in/sb-sakib-sarkar-5823202b9/",
       color: "hover:text-blue-500"
     },
@@ -217,7 +217,7 @@ const MyContact = () => {
           <h2 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-4 animate-pulse">
             Loading Contact Page
           </h2>
-          
+
           <div className="flex items-center justify-center space-x-2 text-gray-400">
             <div className="flex space-x-1">
               <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce"></div>
@@ -243,7 +243,7 @@ const MyContact = () => {
         <div className="absolute top-10 left-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float-delayed"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float-reverse"></div>
-        
+
         {/* Floating particles */}
         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-cyan-400 rounded-full animate-ping opacity-60"></div>
         <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-purple-400 rounded-full animate-ping animation-delay-1000 opacity-60"></div>
@@ -287,8 +287,8 @@ const MyContact = () => {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2 animate-fade-in animation-delay-800">MERN Stack Developer</h3>
-                <p className="text-gray-300 mb-4 animate-fade-in animation-delay-900">Front End || Full-Stack || Ai Agent || Python Development</p>
-                
+                <p className="text-gray-300 mb-4 animate-fade-in animation-delay-900">Founder & CEO of EasyShoppingMall || Full-Stack || Ai Agent || Apps Development</p>
+
                 {/* Enhanced Status */}
                 <div className="flex items-center justify-center space-x-2 text-green-400 mb-6 animate-fade-in animation-delay-1000">
                   <div className="relative">
@@ -297,7 +297,7 @@ const MyContact = () => {
                   </div>
                   <span className="text-sm font-medium">Available for new projects</span>
                 </div>
-                
+
                 {/* Enhanced Response Time */}
                 <div className="flex items-center justify-center space-x-6 text-gray-400 text-sm animate-fade-in animation-delay-1100">
                   <div className="flex items-center space-x-1 hover:text-cyan-400 transition-colors duration-300">

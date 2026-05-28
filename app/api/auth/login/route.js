@@ -8,6 +8,15 @@ export async function POST(request) {
     const adminEmail = process.env.ADMIN_EMAIL;
     const adminPass = process.env.ADMIN_PASS;
 
+    // Check if environment variables are correctly loaded
+    if (!adminEmail || !adminPass) {
+      console.error('ERROR: ADMIN_EMAIL or ADMIN_PASS is not defined in environment variables (.env.local)');
+      return NextResponse.json(
+        { success: false, message: 'Server configuration error. Contact admin.' },
+        { status: 500 }
+      );
+    }
+
     if (email === adminEmail && password === adminPass) {
       // Create JWT token
       const secret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -31,9 +40,12 @@ export async function POST(request) {
       return response;
     }
 
+    // Log the mismatch details in the terminal to help debugging
+    console.warn(`Login failed: Invalid credentials. Provided email: "${email}". Expected email: "${adminEmail}".`);
     return NextResponse.json({ success: false, message: 'Invalid credentials' }, { status: 401 });
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json({ success: false, message: 'Server error' }, { status: 500 });
   }
 }
+

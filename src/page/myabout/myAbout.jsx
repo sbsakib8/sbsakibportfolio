@@ -74,10 +74,11 @@ const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
   }, [isLoading]);
 
   const fallbackSkills = [
-    { name: 'JavaScript', level: 95, icon: 'Code', color: 'from-yellow-400 to-orange-500' },
-    { name: 'React.js', level: 92, icon: 'Globe', color: 'from-blue-400 to-cyan-500' },
-    { name: 'Node.js', level: 90, icon: 'Database', color: 'from-green-400 to-emerald-500' },
-    { name: 'Python', level: 88, icon: 'Brain', color: 'from-purple-400 to-pink-500' }
+    { name: 'Full Stack Developer', level: 93, icon: 'Code', color: 'from-yellow-400 to-orange-500' },
+    { name: 'Front End Developer', level: 98, icon: 'Globe', color: 'from-blue-400 to-cyan-500' },
+    { name: 'Back End Developer', level: 95, icon: 'Database', color: 'from-green-400 to-emerald-500' },
+    { name: 'AI Agent Developer', level: 89, icon: 'Database', color: 'from-green-400 to-emerald-500' },
+    { name: 'Mobile App Developer', level: 85, icon: 'Brain', color: 'from-purple-400 to-pink-500' }
   ];
 
   const fallbackExperiences = [
@@ -196,10 +197,10 @@ const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
         <div className="absolute top-20 left-20 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
         <div className="absolute bottom-20 right-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float animation-delay-2000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-float animation-delay-4000"></div>
-        
+
         {/* Enhanced Grid Pattern */}
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        
+
         {/* Floating particles */}
         <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (
@@ -248,10 +249,10 @@ const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
               </div>
               <div className="text-gray-300">{stat.label}</div>
               <div className="w-full h-1 bg-gray-700 rounded-full mt-3 overflow-hidden">
-                <div className={`h-full bg-gradient-to-r ${stat.color.includes('cyan') ? 'from-cyan-400 to-blue-400' : 
+                <div className={`h-full bg-gradient-to-r ${stat.color.includes('cyan') ? 'from-cyan-400 to-blue-400' :
                   stat.color.includes('green') ? 'from-green-400 to-emerald-400' :
-                  stat.color.includes('purple') ? 'from-purple-400 to-pink-400' :
-                  'from-yellow-400 to-orange-400'} rounded-full transition-all duration-2000 ease-out`}
+                    stat.color.includes('purple') ? 'from-purple-400 to-pink-400' :
+                      'from-yellow-400 to-orange-400'} rounded-full transition-all duration-2000 ease-out`}
                   style={{ width: index <= 1 ? '100%' : index === 2 ? '90%' : '85%' }}
                 ></div>
               </div>
@@ -268,19 +269,19 @@ const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
               <div className="aspect-square rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center mb-6 relative overflow-hidden group">
                 <div className="w-64 h-64 rounded-full bg-gradient-to-br from-cyan-400 to-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                   {/* <Code className="w-16 h-16 text-white animate-pulse" /> */}
-                   <img src="mypic/sakib1.webp" className=' w-[250px] h-[250px] rounded-full' alt="" />
+                  <img src="mypic/sakib1.webp" className=' w-[250px] h-[250px] rounded-full' alt="" />
                 </div>
                 <div className="absolute top-4 right-4 w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
                 <div className="absolute bottom-4 left-4 w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              
+
               <h3 className="text-2xl font-bold text-white text-center mb-2">{dbProfile?.name || 'SB Sakib Sarkar'}</h3>
               <p className="text-cyan-400 text-center mb-4 font-semibold">{dbProfile?.role || 'Front End || Full-Stack || Ai Agent || Python Developer'}</p>
-              
+
               <Link href={dbProfile?.resumeUrl || "cv/sbsakib-resume.pdf"}
-                    download="Resume.pdf" 
-                   className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
+                download="Resume.pdf"
+                className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
                 <Download className="w-5 h-5" />
                 <span>Download CV</span>
               </Link>
@@ -333,11 +334,10 @@ const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
-                    activeTab === tab.id
-                      ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-                  }`}
+                  className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${activeTab === tab.id
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25'
+                    : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
+                    }`}
                 >
                   <div className={activeTab === tab.id ? 'animate-pulse' : ''}>{tab.icon}</div>
                   <span>{tab.label}</span>
@@ -347,7 +347,7 @@ const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
 
             {/* Tab Content */}
             <div className={`bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 transition-all duration-1000 delay-1200 transform ${visibleElements.content ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              
+
               {/* About Tab */}
               {activeTab === 'about' && (
                 <div className="space-y-6 animate-fade-in">
@@ -355,14 +355,16 @@ const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
                     <Target className="w-6 h-6 text-cyan-400 mr-3" />
                     <h3 className="text-2xl font-bold text-white">Who Am I?</h3>
                   </div>
-                  <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-wrap">
-                    {dbProfile?.bio || `I'm a passionate Full-Stack Developer with 3+ years of experience creating modern web applications.`}
-                  </p>
+
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    I believe technology can make people's lives easier. That's why I always strive to create 
-                    solutions that are not just functional, but user-friendly and efficient.
+                    I am a passionate Full Stack Developer and technology entrepreneur who loves building modern web applications, AI-powered solutions, and scalable digital products. As a MERN Stack Developer, I work with MongoDB, Express.js, React.js, and Node.js to create dynamic, user-friendly, and high-performance applications. I also specialize in AI Agent Development and App Development, focusing on automation, smart workflows, and real-world problem-solving solutions.
+
+                    Beyond development, I am also the Founder & CEO of EasyShoppingMallBD, an e-commerce platform focused on building a smart digital business ecosystem through e-commerce, dropshipping, affiliate systems, and online entrepreneurship opportunities. My vision is to empower people with technology and create innovative platforms that make online business and earning more accessible.
+
+                    I am passionate about learning new technologies, creating impactful digital experiences, and turning ideas into real-world solutions. I strongly believe that AI and modern technology will shape the future, and I continuously work to improve my skills and contribute to that future through innovation and creativity.
+
                   </p>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6 mt-8">
                     <div className="space-y-4">
                       <div className="flex items-center mb-4">
@@ -370,7 +372,7 @@ const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
                         <h4 className="text-lg font-semibold text-white">My Specialties:</h4>
                       </div>
                       <ul className="space-y-3">
-                        {['Responsive Web Design', 'API Development', 'Database Design', 'AI Integration'].map((item, index) => (
+                        {['Full Stack Web Development (MERN Stack)', 'AI Agent Development', 'Database Design', 'App Development'].map((item, index) => (
                           <li key={index} className="flex items-center space-x-3 text-gray-300 p-2 rounded-lg hover:bg-white/5 transition-colors duration-300">
                             <CheckCircle className="w-5 h-5 text-green-400 animate-pulse" style={{ animationDelay: `${index * 0.2}s` }} />
                             <span>{item}</span>
@@ -410,13 +412,13 @@ const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
                       style={{ animationDelay: `${index * 0.2}s` }}
                     >
                       <div className={`absolute -left-3 w-6 h-6 rounded-full bg-gradient-to-r ${exp.color} animate-pulse`}></div>
-                      
+
                       <div className="bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-500 transform hover:scale-[1.02] hover:shadow-lg">
                         <h4 className="text-xl font-bold text-white mb-1">{exp.title}</h4>
                         <p className="text-cyan-400 font-semibold mb-2">{exp.company}</p>
                         <p className="text-gray-400 text-sm mb-4">{exp.period}</p>
                         <p className="text-gray-300 mb-4">{exp.description}</p>
-                        
+
                         <div className="space-y-2">
                           <h5 className="text-white font-semibold flex items-center">
                             <Sparkles className="w-4 h-4 mr-2 text-yellow-400" />
@@ -490,7 +492,7 @@ const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
                       </div>
                     ))}
                   </div>
-                  
+
                   {/* Additional Skills Section */}
                   <div className="mt-12 p-6 bg-white/5 rounded-xl border border-white/10">
                     <h4 className="text-lg font-bold text-white mb-4 flex items-center">
