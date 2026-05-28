@@ -3,7 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Code, Database, Brain, Globe, Award, Calendar, MapPin, Mail, Phone, Download, Play, Users, Coffee, BookOpen, Zap, Star, Heart, CheckCircle, ArrowRight, Loader2, Sparkles, TrendingUp, Target, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
 
-const MyAbout = () => {
+const MyAbout = ({ dbProfile, dbExperiences, dbEducation, dbSkills }) => {
+  // Dynamic Icon Map
+  const IconMap = { Code, Database, Brain, Globe, Award, Calendar, MapPin, Mail, Phone, Download, Play, Users, Coffee, BookOpen, Zap, Star, Heart, CheckCircle, ArrowRight, Loader2, Sparkles, TrendingUp, Target, Lightbulb };
+
   const [activeTab, setActiveTab] = useState('about');
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -70,64 +73,44 @@ const MyAbout = () => {
     }
   }, [isLoading]);
 
-  const skills = [
-    { name: 'JavaScript', level: 95, icon: <Code className="w-5 h-5" />, color: 'from-yellow-400 to-orange-500' },
-    { name: 'React.js', level: 92, icon: <Globe className="w-5 h-5" />, color: 'from-blue-400 to-cyan-500' },
-    { name: 'Node.js', level: 90, icon: <Database className="w-5 h-5" />, color: 'from-green-400 to-emerald-500' },
-    { name: 'Python', level: 88, icon: <Brain className="w-5 h-5" />, color: 'from-purple-400 to-pink-500' },
-    { name: 'MongoDB', level: 85, icon: <Database className="w-5 h-5" />, color: 'from-green-500 to-lime-500' },
-    { name: 'AI/ML', level: 82, icon: <Brain className="w-5 h-5" />, color: 'from-indigo-400 to-purple-500' }
+  const fallbackSkills = [
+    { name: 'Full Stack Developer', level: 93, icon: 'Code', color: 'from-yellow-400 to-orange-500' },
+    { name: 'Front End Developer', level: 98, icon: 'Globe', color: 'from-blue-400 to-cyan-500' },
+    { name: 'Back End Developer', level: 95, icon: 'Database', color: 'from-green-400 to-emerald-500' },
+    { name: 'AI Agent Developer', level: 89, icon: 'Database', color: 'from-green-400 to-emerald-500' },
+    { name: 'Mobile App Developer', level: 85, icon: 'Brain', color: 'from-purple-400 to-pink-500' }
   ];
 
-  const experiences = [
+  const fallbackExperiences = [
     {
       title: 'Senior Full-Stack Developer',
       company: 'TechCorp Solutions',
       period: '2022 - Present',
-      description: 'Leading development of enterprise web applications using MERN stack. Mentoring junior developers and architecting scalable solutions.',
-      achievements: ['Built 15+ production applications', 'Improved system performance by 40%', 'Led team of 5 developers'],
+      description: 'Leading development of enterprise web applications using MERN stack.',
+      achievements: ['Built 15+ production applications', 'Improved system performance by 40%'],
       color: 'from-blue-500 to-cyan-500'
-    },
-    {
-      title: 'MERN Stack Developer',
-      company: 'Digital Innovations Ltd',
-      period: '2021 - 2022',
-      description: 'Developed responsive web applications and RESTful APIs. Collaborated with UI/UX designers and product managers.',
-      achievements: ['Delivered 20+ client projects', 'Reduced loading time by 50%', 'Integrated 10+ third-party APIs'],
-      color: 'from-green-500 to-emerald-500'
-    },
-    {
-      title: 'Frontend Developer',
-      company: 'StartupHub',
-      period: '2020 - 2021',
-      description: 'Created modern, responsive user interfaces using React.js. Focused on user experience and performance optimization.',
-      achievements: ['Built 8 responsive websites', 'Improved user engagement by 35%', 'Optimized bundle size by 60%'],
-      color: 'from-purple-500 to-pink-500'
     }
   ];
 
-  const education = [
+  const fallbackEducation = [
     {
       degree: 'Bachelor of Science in Computer Science',
       institution: 'University of Dhaka',
       period: '2016 - 2020',
-      description: 'Specialized in Software Engineering and Artificial Intelligence. Graduated with First Class Honors.',
+      description: 'Specialized in Software Engineering and Artificial Intelligence.',
       color: 'from-indigo-500 to-purple-500'
-    },
-    {
-      degree: 'Advanced Web Development Certification',
-      institution: 'freeCodeCamp',
-      period: '2020',
-      description: 'Comprehensive full-stack web development program covering modern frameworks and best practices.',
-      color: 'from-cyan-500 to-blue-500'
     }
   ];
 
+  const skills = dbSkills?.length > 0 ? dbSkills : fallbackSkills;
+  const experiences = dbExperiences?.length > 0 ? dbExperiences : fallbackExperiences;
+  const education = dbEducation?.length > 0 ? dbEducation : fallbackEducation;
+
   const personalInfo = [
-    { icon: <Calendar className="w-5 h-5" />, label: 'Date of Birth', value: 'May 29, 1995' },
-    { icon: <MapPin className="w-5 h-5" />, label: 'Location', value: 'Dhaka, Gazipur , Bangladesh' },
-    { icon: <Mail className="w-5 h-5" />, label: 'Email', value: 'sakibhossain7397@gmail.com' },
-    { icon: <Phone className="w-5 h-5" />, label: 'WhatsApp', value: '+880 1768820891' }
+    { icon: <Calendar className="w-5 h-5" />, label: 'Date of Birth', value: dbProfile?.dob || 'May 29, 1995' },
+    { icon: <MapPin className="w-5 h-5" />, label: 'Location', value: dbProfile?.location || 'Dhaka, Bangladesh' },
+    { icon: <Mail className="w-5 h-5" />, label: 'Email', value: dbProfile?.email || 'sakibhossain7397@gmail.com' },
+    { icon: <Phone className="w-5 h-5" />, label: 'WhatsApp', value: dbProfile?.phone || '+880 1768820891' }
   ];
 
   const interests = [
@@ -214,10 +197,10 @@ const MyAbout = () => {
         <div className="absolute top-20 left-20 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
         <div className="absolute bottom-20 right-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float animation-delay-2000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-float animation-delay-4000"></div>
-        
+
         {/* Enhanced Grid Pattern */}
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        
+
         {/* Floating particles */}
         <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (
@@ -266,10 +249,10 @@ const MyAbout = () => {
               </div>
               <div className="text-gray-300">{stat.label}</div>
               <div className="w-full h-1 bg-gray-700 rounded-full mt-3 overflow-hidden">
-                <div className={`h-full bg-gradient-to-r ${stat.color.includes('cyan') ? 'from-cyan-400 to-blue-400' : 
+                <div className={`h-full bg-gradient-to-r ${stat.color.includes('cyan') ? 'from-cyan-400 to-blue-400' :
                   stat.color.includes('green') ? 'from-green-400 to-emerald-400' :
-                  stat.color.includes('purple') ? 'from-purple-400 to-pink-400' :
-                  'from-yellow-400 to-orange-400'} rounded-full transition-all duration-2000 ease-out`}
+                    stat.color.includes('purple') ? 'from-purple-400 to-pink-400' :
+                      'from-yellow-400 to-orange-400'} rounded-full transition-all duration-2000 ease-out`}
                   style={{ width: index <= 1 ? '100%' : index === 2 ? '90%' : '85%' }}
                 ></div>
               </div>
@@ -286,19 +269,19 @@ const MyAbout = () => {
               <div className="aspect-square rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center mb-6 relative overflow-hidden group">
                 <div className="w-64 h-64 rounded-full bg-gradient-to-br from-cyan-400 to-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                   {/* <Code className="w-16 h-16 text-white animate-pulse" /> */}
-                   <img src="mypic/sakib1.webp" className=' w-[250px] h-[250px] rounded-full' alt="" />
+                  <img src="mypic/sakib1.webp" className=' w-[250px] h-[250px] rounded-full' alt="" />
                 </div>
                 <div className="absolute top-4 right-4 w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
                 <div className="absolute bottom-4 left-4 w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              
-              <h3 className="text-2xl font-bold text-white text-center mb-2">SB Sakib Sarkar</h3>
-              <p className="text-cyan-400 text-center mb-4 font-semibold">Front End || Full-Stack || Ai Agent || Python Developer</p>
-              
-              <Link  href="cv/sbsakib-resume.pdf"
-                    download="Sakib_Hossain_Resume.pdf" 
-                   className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
+
+              <h3 className="text-2xl font-bold text-white text-center mb-2">{dbProfile?.name || 'SB Sakib Sarkar'}</h3>
+              <p className="text-cyan-400 text-center mb-4 font-semibold">{dbProfile?.role || 'Front End || Full-Stack || Ai Agent || Python Developer'}</p>
+
+              <Link href={dbProfile?.resumeUrl || "cv/sbsakib-resume.pdf"}
+                download="Resume.pdf"
+                className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
                 <Download className="w-5 h-5" />
                 <span>Download CV</span>
               </Link>
@@ -351,11 +334,10 @@ const MyAbout = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
-                    activeTab === tab.id
-                      ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
-                  }`}
+                  className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${activeTab === tab.id
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25'
+                    : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
+                    }`}
                 >
                   <div className={activeTab === tab.id ? 'animate-pulse' : ''}>{tab.icon}</div>
                   <span>{tab.label}</span>
@@ -365,7 +347,7 @@ const MyAbout = () => {
 
             {/* Tab Content */}
             <div className={`bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 transition-all duration-1000 delay-1200 transform ${visibleElements.content ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              
+
               {/* About Tab */}
               {activeTab === 'about' && (
                 <div className="space-y-6 animate-fade-in">
@@ -373,16 +355,16 @@ const MyAbout = () => {
                     <Target className="w-6 h-6 text-cyan-400 mr-3" />
                     <h3 className="text-2xl font-bold text-white">Who Am I?</h3>
                   </div>
+
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    I'm a passionate Full-Stack Developer with <span className="text-cyan-400 font-semibold">3+ years of experience</span> creating 
-                    modern web applications. My specialty lies in <span className="text-purple-400 font-semibold">MERN Stack</span> and 
-                    <span className="text-green-400 font-semibold"> AI integration</span>.
+                    I am a passionate Full Stack Developer and technology entrepreneur who loves building modern web applications, AI-powered solutions, and scalable digital products. As a MERN Stack Developer, I work with MongoDB, Express.js, React.js, and Node.js to create dynamic, user-friendly, and high-performance applications. I also specialize in AI Agent Development and App Development, focusing on automation, smart workflows, and real-world problem-solving solutions.
+
+                    Beyond development, I am also the Founder & CEO of EasyShoppingMallBD, an e-commerce platform focused on building a smart digital business ecosystem through e-commerce, dropshipping, affiliate systems, and online entrepreneurship opportunities. My vision is to empower people with technology and create innovative platforms that make online business and earning more accessible.
+
+                    I am passionate about learning new technologies, creating impactful digital experiences, and turning ideas into real-world solutions. I strongly believe that AI and modern technology will shape the future, and I continuously work to improve my skills and contribute to that future through innovation and creativity.
+
                   </p>
-                  <p className="text-gray-300 text-lg leading-relaxed">
-                    I believe technology can make people's lives easier. That's why I always strive to create 
-                    solutions that are not just functional, but user-friendly and efficient.
-                  </p>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6 mt-8">
                     <div className="space-y-4">
                       <div className="flex items-center mb-4">
@@ -390,7 +372,7 @@ const MyAbout = () => {
                         <h4 className="text-lg font-semibold text-white">My Specialties:</h4>
                       </div>
                       <ul className="space-y-3">
-                        {['Responsive Web Design', 'API Development', 'Database Design', 'AI Integration'].map((item, index) => (
+                        {['Full Stack Web Development (MERN Stack)', 'AI Agent Development', 'Database Design', 'App Development'].map((item, index) => (
                           <li key={index} className="flex items-center space-x-3 text-gray-300 p-2 rounded-lg hover:bg-white/5 transition-colors duration-300">
                             <CheckCircle className="w-5 h-5 text-green-400 animate-pulse" style={{ animationDelay: `${index * 0.2}s` }} />
                             <span>{item}</span>
@@ -430,19 +412,19 @@ const MyAbout = () => {
                       style={{ animationDelay: `${index * 0.2}s` }}
                     >
                       <div className={`absolute -left-3 w-6 h-6 rounded-full bg-gradient-to-r ${exp.color} animate-pulse`}></div>
-                      
+
                       <div className="bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-500 transform hover:scale-[1.02] hover:shadow-lg">
                         <h4 className="text-xl font-bold text-white mb-1">{exp.title}</h4>
                         <p className="text-cyan-400 font-semibold mb-2">{exp.company}</p>
                         <p className="text-gray-400 text-sm mb-4">{exp.period}</p>
                         <p className="text-gray-300 mb-4">{exp.description}</p>
-                        
+
                         <div className="space-y-2">
                           <h5 className="text-white font-semibold flex items-center">
                             <Sparkles className="w-4 h-4 mr-2 text-yellow-400" />
                             Key Achievements:
                           </h5>
-                          {exp.achievements.map((achievement, i) => (
+                          {exp.achievements?.map((achievement, i) => (
                             <div key={i} className="flex items-center space-x-2 p-2 rounded-lg hover:bg-white/5 transition-colors duration-300">
                               <ArrowRight className="w-4 h-4 text-green-400" />
                               <span className="text-gray-300">{achievement}</span>
@@ -490,7 +472,12 @@ const MyAbout = () => {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3">
                             <div className={`p-2 rounded-lg bg-gradient-to-r ${skill.color} hover:scale-110 transition-transform duration-300`}>
-                              <div className="text-white">{skill.icon}</div>
+                              <div className="text-white">
+                                {(() => {
+                                  const Icon = IconMap[skill.icon] || Code;
+                                  return <Icon className="w-5 h-5" />;
+                                })()}
+                              </div>
                             </div>
                             <span className="text-white font-semibold">{skill.name}</span>
                           </div>
@@ -505,7 +492,7 @@ const MyAbout = () => {
                       </div>
                     ))}
                   </div>
-                  
+
                   {/* Additional Skills Section */}
                   <div className="mt-12 p-6 bg-white/5 rounded-xl border border-white/10">
                     <h4 className="text-lg font-bold text-white mb-4 flex items-center">

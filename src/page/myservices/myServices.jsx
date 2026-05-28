@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Code, Brain, Database, Server, Smartphone, Globe, Bot, Zap, Settings, X, Loader2, Sparkles, CheckCircle, Star, ArrowRight, Clock, Users, Target, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
-const MyServices = () => {
+const MyServices = ({ dbServices }) => {
   const [selectedService, setSelectedService] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -64,7 +64,7 @@ const MyServices = () => {
     }
   }, [isLoading]);
 
-  const services = [
+  const fallbackServices = [
     {
       id: 1,
       title: "MERN Stack Development",
@@ -235,6 +235,17 @@ const MyServices = () => {
     }
   ];
 
+  const services = dbServices?.length > 0 ? dbServices : fallbackServices;
+
+  const IconMap = {
+    Globe: <Globe className="w-8 h-8" />,
+    Bot: <Bot className="w-8 h-8" />,
+    Code: <Code className="w-8 h-8" />,
+    Database: <Database className="w-8 h-8" />,
+    Server: <Server className="w-8 h-8" />,
+    Smartphone: <Smartphone className="w-8 h-8" />
+  };
+
   const openModal = (service) => {
     setSelectedService(service);
   };
@@ -384,15 +395,15 @@ const MyServices = () => {
               
               {/* Floating Icon Background */}
               <div className={`absolute top-4 right-4 w-12 h-12 ${service.bgColor} rounded-full flex items-center justify-center opacity-50 group-hover:opacity-80 transition-opacity duration-300`}>
-                <div className={`${service.textColor} transform group-hover:rotate-12 transition-transform duration-300`}>
-                  {React.cloneElement(service.icon, { className: "w-6 h-6" })}
+                <div className={`${service.textColor || 'text-blue-400'} transform group-hover:rotate-12 transition-transform duration-300`}>
+                  {React.cloneElement(service.icon && typeof service.icon !== 'string' ? service.icon : (IconMap[service.icon] || <Code className="w-8 h-8" />), { className: "w-6 h-6" })}
                 </div>
               </div>
 
               {/* Icon */}
-              <div className={`inline-flex p-4 rounded-xl bg-gradient-to-r ${service.gradient} mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}>
+              <div className={`inline-flex p-4 rounded-xl bg-gradient-to-r ${service.gradient || 'from-blue-500 to-purple-500'} mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}>
                 <div className="text-white">
-                  {service.icon}
+                  {service.icon && typeof service.icon !== 'string' ? service.icon : (IconMap[service.icon] || <Code className="w-8 h-8" />)}
                 </div>
               </div>
 
@@ -416,14 +427,14 @@ const MyServices = () => {
                     <Clock className="w-4 h-4 mr-2" />
                     Duration:
                   </span>
-                  <span className={`${service.textColor} font-semibold`}>{service.duration}</span>
+                  <span className={`${service.textColor || 'text-blue-400'} font-semibold`}>{service.duration || 'Flexible'}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-400 flex items-center">
                     <TrendingUp className="w-4 h-4 mr-2" />
                     Complexity:
                   </span>
-                  <span className={`${service.textColor} font-semibold`}>{service.complexity}</span>
+                  <span className={`${service.textColor || 'text-blue-400'} font-semibold`}>{service.complexity || 'Varies'}</span>
                 </div>
               </div>
 
@@ -475,7 +486,7 @@ const MyServices = () => {
               
               <div className="flex items-center space-x-6 relative z-10">
                 <div className="text-white p-4 bg-white/20 rounded-xl backdrop-blur-md border border-white/30">
-                  {selectedService.icon}
+                  {selectedService.icon && typeof selectedService.icon !== 'string' ? selectedService.icon : (IconMap[selectedService.icon] || <Code className="w-8 h-8" />)}
                 </div>
                 <div>
                   <h3 className="text-4xl font-bold text-white mb-2">{selectedService.title}</h3>
@@ -483,11 +494,11 @@ const MyServices = () => {
                   <div className="flex items-center space-x-6 mt-4">
                     <div className="flex items-center space-x-2">
                       <Clock className="w-5 h-5 text-white/80" />
-                      <span className="text-white/80">{selectedService.duration}</span>
+                      <span className="text-white/80">{selectedService.duration || 'Flexible'}</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <TrendingUp className="w-5 h-5 text-white/80" />
-                      <span className="text-white/80">{selectedService.complexity}</span>
+                      <span className="text-white/80">{selectedService.complexity || 'Varies'}</span>
                     </div>
                   </div>
                 </div>
@@ -503,7 +514,7 @@ const MyServices = () => {
                   Detailed Description
                 </h4>
                 <p className="text-gray-300 text-lg leading-relaxed bg-white/5 p-6 rounded-xl border border-white/10">
-                  {selectedService.details.overview}
+                  {selectedService.details?.overview || selectedService.description}
                 </p>
               </div>
 
@@ -514,7 +525,7 @@ const MyServices = () => {
                   Key Features
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {selectedService.details.features.map((feature, index) => (
+                  {(selectedService.details?.features || []).map((feature, index) => (
                     <div
                       key={index}
                       className="flex items-center space-x-3 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-102 border border-white/10 hover:border-white/20"
@@ -535,10 +546,10 @@ const MyServices = () => {
                     Technologies Used
                   </h4>
                   <div className="flex flex-wrap gap-3">
-                    {selectedService.details.technologies.map((tech, index) => (
+                    {(selectedService.details?.technologies || []).map((tech, index) => (
                       <span
                         key={index}
-                        className={`px-4 py-2 bg-gradient-to-r ${selectedService.gradient} text-white rounded-full text-sm font-medium hover:scale-105 transition-transform duration-300 shadow-lg`}
+                        className={`px-4 py-2 bg-gradient-to-r ${selectedService.gradient || 'from-blue-500 to-purple-500'} text-white rounded-full text-sm font-medium hover:scale-105 transition-transform duration-300 shadow-lg`}
                       >
                         {tech}
                       </span>
@@ -553,10 +564,10 @@ const MyServices = () => {
                     Pricing & Deliverables
                   </h4>
                   <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                    <div className="text-2xl font-bold text-green-400 mb-4">{selectedService.details.pricing}</div>
+                    <div className="text-2xl font-bold text-green-400 mb-4">{selectedService.details?.pricing || 'Custom Pricing'}</div>
                     <div className="space-y-2">
                       <h5 className="text-white font-semibold mb-3">What you'll get:</h5>
-                      {selectedService.details.deliverables.map((item, index) => (
+                      {(selectedService.details?.deliverables || []).map((item, index) => (
                         <div key={index} className="flex items-center space-x-2">
                           <CheckCircle className="w-4 h-4 text-green-400" />
                           <span className="text-gray-300 text-sm">{item}</span>

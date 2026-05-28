@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { ExternalLink, Github, Code, Database, Brain, Globe, Smartphone, Server, X, Calendar, Star, Users, Zap, Loader2 } from 'lucide-react';
 
-const MyPortfolio = () => {
+const MyPortfolio = ({ dbProjects }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadedImages, setLoadedImages] = useState(new Set());
 
-  const projects = [
+  const fallbackProjects = [
     {
       id: 1,
       title: "E-Commerce Platform",
@@ -172,6 +172,8 @@ const MyPortfolio = () => {
     }
   ];
 
+  const projects = dbProjects?.length > 0 ? dbProjects : fallbackProjects;
+
   // Simulate loading time and preload images
   useEffect(() => {
     const loadImages = async () => {
@@ -183,7 +185,7 @@ const MyPortfolio = () => {
             resolve();
           };
           img.onerror = resolve; // Continue even if image fails to load
-          img.src = project.cover;
+          img.src = project.cover || project.imageUrl || "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop";
         });
       });
 
@@ -305,11 +307,11 @@ const MyPortfolio = () => {
               {/* Enhanced Project Cover Image */}
               <div className="relative overflow-hidden h-48 group-hover:h-52 transition-all duration-700">
                 <img 
-                  src={project.cover} 
+                  src={project.cover || project.imageUrl || "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop"} 
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-60 group-hover:opacity-40 transition-opacity duration-500`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient || 'from-blue-500 via-purple-500 to-pink-500'} opacity-60 group-hover:opacity-40 transition-opacity duration-500`}></div>
                 
                 {/* Overlay Effects */}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
@@ -317,7 +319,7 @@ const MyPortfolio = () => {
                 {/* Category Badge */}
                 <div className="absolute top-4 right-4 transform group-hover:scale-110 transition-transform duration-300">
                   <span className="px-4 py-2 bg-black/60 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/20">
-                    {project.category}
+                    {project.category || 'Project'}
                   </span>
                 </div>
 
@@ -345,7 +347,7 @@ const MyPortfolio = () => {
 
                 {/* Enhanced Technologies */}
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.slice(0, 3).map((tech, techIndex) => (
+                  {(project.technologies || project.techStack || []).slice(0, 3).map((tech, techIndex) => (
                     <span
                       key={techIndex}
                       className="px-3 py-1 bg-white/5 text-gray-300 text-sm rounded-full hover:bg-white/10 hover:text-white transition-all duration-300 transform hover:scale-105"
@@ -353,9 +355,9 @@ const MyPortfolio = () => {
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 3 && (
+                  {(project.technologies || project.techStack || []).length > 3 && (
                     <span className="px-3 py-1 bg-white/5 text-gray-300 text-sm rounded-full hover:bg-white/10 transition-colors duration-300">
-                      +{project.technologies.length - 3} more
+                      +{(project.technologies || project.techStack || []).length - 3} more
                     </span>
                   )}
                 </div>
@@ -365,9 +367,9 @@ const MyPortfolio = () => {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      openLiveDemo(project.liveDemo);
+                      openLiveDemo(project.liveDemo || project.liveUrl || '#');
                     }}
-                    className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 bg-gradient-to-r ${project.gradient} text-white rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300 transform hover:shadow-purple-500/50`}
+                    className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 bg-gradient-to-r ${project.gradient || 'from-blue-500 to-purple-500'} text-white rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300 transform hover:shadow-purple-500/50`}
                   >
                     <ExternalLink className="w-4 h-4" />
                     <span>Live Demo</span>
@@ -400,7 +402,7 @@ const MyPortfolio = () => {
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
           <div className="bg-slate-800/90 backdrop-blur-xl rounded-3xl max-w-6xl w-full max-h-[95vh] overflow-y-auto border border-white/20 animate-scale-in-bounce shadow-2xl">
             {/* Enhanced Modal Header */}
-            <div className={`bg-gradient-to-r ${selectedProject.gradient} p-8 rounded-t-3xl relative overflow-hidden`}>
+            <div className={`bg-gradient-to-r ${selectedProject.gradient || 'from-blue-500 to-purple-500'} p-8 rounded-t-3xl relative overflow-hidden`}>
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-20">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full transform translate-x-16 -translate-y-16"></div>
@@ -422,11 +424,11 @@ const MyPortfolio = () => {
                     <div className="flex items-center space-x-8 text-white/80 animate-slide-in-left animation-delay-400">
                       <div className="flex items-center space-x-2">
                         <Calendar className="w-5 h-5" />
-                        <span className="font-medium">{selectedProject.details.duration}</span>
+                        <span className="font-medium">{selectedProject.details?.duration || 'Ongoing'}</span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <Users className="w-5 h-5" />
-                        <span className="font-medium">{selectedProject.details.teamSize}</span>
+                        <span className="font-medium">{selectedProject.details?.teamSize || 'Team'}</span>
                       </div>
                     </div>
                   </div>
@@ -439,16 +441,16 @@ const MyPortfolio = () => {
               {/* Project Links */}
               <div className="flex flex-wrap gap-4 animate-slide-in-up">
                 <a
-                  href={selectedProject.liveDemo}
+                  href={selectedProject.liveDemo || selectedProject.liveUrl || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center space-x-3 px-8 py-4 bg-gradient-to-r ${selectedProject.gradient} text-white rounded-xl hover:scale-105 transition-all duration-300 font-medium shadow-lg hover:shadow-2xl`}
+                  className={`flex items-center space-x-3 px-8 py-4 bg-gradient-to-r ${selectedProject.gradient || 'from-blue-500 to-purple-500'} text-white rounded-xl hover:scale-105 transition-all duration-300 font-medium shadow-lg hover:shadow-2xl`}
                 >
                   <ExternalLink className="w-5 h-5" />
                   <span>Live Demo</span>
                 </a>
                 <a
-                  href={selectedProject.githubRepo}
+                  href={selectedProject.githubRepo || selectedProject.githubUrl || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 px-8 py-4 bg-gray-700 hover:bg-gray-600 text-white rounded-xl hover:scale-105 transition-all duration-300 font-medium shadow-lg hover:shadow-2xl"
@@ -465,7 +467,7 @@ const MyPortfolio = () => {
                   Project Overview
                 </h4>
                 <p className="text-gray-300 text-lg leading-relaxed bg-white/5 p-6 rounded-2xl border border-white/10">
-                  {selectedProject.details.overview}
+                  {selectedProject.details?.overview || selectedProject.description}
                 </p>
               </div>
 
@@ -476,12 +478,12 @@ const MyPortfolio = () => {
                   Key Features
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {selectedProject.details.features.map((feature, index) => (
+                  {(selectedProject.details?.features || []).map((feature, index) => (
                     <div
                       key={index}
                       className="flex items-center space-x-4 p-5 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/5 hover:border-white/20 transform hover:scale-105"
                     >
-                      <div className={`w-3 h-3 bg-gradient-to-r ${selectedProject.gradient} rounded-full animate-pulse`}></div>
+                      <div className={`w-3 h-3 bg-gradient-to-r ${selectedProject.gradient || 'from-blue-500 to-purple-500'} rounded-full animate-pulse`}></div>
                       <span className="text-gray-300 font-medium">{feature}</span>
                     </div>
                   ))}
@@ -495,10 +497,10 @@ const MyPortfolio = () => {
                   Technologies Used
                 </h4>
                 <div className="flex flex-wrap gap-4">
-                  {selectedProject.technologies.map((tech, index) => (
+                  {(selectedProject.technologies || selectedProject.techStack || []).map((tech, index) => (
                     <span
                       key={index}
-                      className={`px-6 py-3 bg-gradient-to-r ${selectedProject.gradient} text-white rounded-xl text-sm font-medium hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer`}
+                      className={`px-6 py-3 bg-gradient-to-r ${selectedProject.gradient || 'from-blue-500 to-purple-500'} text-white rounded-xl text-sm font-medium hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer`}
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
                       {tech}
@@ -514,7 +516,7 @@ const MyPortfolio = () => {
                   Challenges & Solutions
                 </h4>
                 <p className="text-gray-300 text-lg leading-relaxed bg-white/5 p-6 rounded-2xl border border-white/10">
-                  {selectedProject.details.challenges}
+                  {selectedProject.details?.challenges || "No challenges listed for this project."}
                 </p>
               </div>
             </div>

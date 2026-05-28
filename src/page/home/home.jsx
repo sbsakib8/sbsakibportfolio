@@ -124,11 +124,13 @@ const LoadingScreen = ({ onComplete }) => {
 };
 
 // About Typing Component
-const AboutTyping = () => {
+const AboutTyping = ({ roles }) => {
+    const defaultRoles = ['Ai Agent', 'Python Developer', 'Frontend Developer', 'Backend Developer', 'Full Stack Developer', 'MERN Stack Developer'];
+    const displayRoles = roles && roles.length > 0 ? roles : defaultRoles;
     return (
         <span className='bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent font-bold'>
             <Typewriter
-                words={['Ai Agent', 'Python Developer', 'Frontend Developer', 'Backend Developer', 'Full Stack Developer', 'MERN Stack Developer']}
+                words={displayRoles}
                 loop={0}
                 cursor
                 cursorStyle='|'
@@ -171,28 +173,28 @@ const SkillIcons = ({ isVisible }) => {
 };
 
 // Media and Button Component
-const MediaAndButton = ({ isVisible }) => {
+const MediaAndButton = ({ isVisible, socialLinks: profileSocials, resumeUrl }) => {
     const socialLinks = [
         {
-            href: 'https://www.facebook.com/sbsakibsarkar/',
+            href: profileSocials?.facebook || 'https://www.facebook.com/sbsakibsarkar/',
             icon: BiLogoFacebookCircle,
             color: 'from-blue-600 to-blue-400',
             hoverColor: 'hover:shadow-blue-500/50'
         },
         {
-            href: 'https://www.linkedin.com/in/sb-sakib-sarkar-5823202b9/',
+            href: profileSocials?.linkedin || 'https://www.linkedin.com/in/sb-sakib-sarkar-5823202b9/',
             icon: TiSocialLinkedinCircular,
             color: 'from-blue-700 to-blue-500',
             hoverColor: 'hover:shadow-blue-700/50'
         },
         {
-            href: 'https://www.instagram.com/sbsakibsarkar/',
+            href: profileSocials?.instagram || 'https://www.instagram.com/sbsakibsarkar/',
             icon: FaInstagramSquare,
             color: 'from-pink-600 to-purple-600',
             hoverColor: 'hover:shadow-pink-500/50'
         },
         {
-            href: 'https://github.com/sbsakib8',
+            href: profileSocials?.github || 'https://github.com/sbsakib8',
             icon: FaGithub,
             color: 'from-gray-700 to-gray-900',
             hoverColor: 'hover:shadow-gray-500/50'
@@ -220,7 +222,7 @@ const MediaAndButton = ({ isVisible }) => {
             {/* Buttons */}
             <div className="flex flex-col px-9 md:px-1 sm:flex-row justify-center lg:justify-start gap-4 sm:gap-6">
                 <Link
-                    href="cv/sbsakib-resume.pdf"
+                    href={resumeUrl || "cv/sbsakib-resume.pdf"}
                     download="Sakib_Hossain_Resume.pdf"
                     className={`group cursor-pointer relative overflow-hidden px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-700 hover:-translate-y-3 hover:scale-110 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                         }`}
@@ -285,7 +287,7 @@ const ParticlesBackground = () => {
 };
 
 // Main About Component
-const MyHome = () => {
+const MyHome = ({ dbProfile }) => {
     const [loading, setLoading] = useState(true);
     const [contentVisible, setContentVisible] = useState(false);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -388,12 +390,12 @@ const MyHome = () => {
                             <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight">
                                 <span className="block text-white text-2xl md:text-3xl animate-fade-in-up">Hello, I'm</span>
                                 <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient text-3xl md:text-4xl lg:text-5xl my-2 hover:scale-105 transition-transform duration-300">
-                                    SB Sakib Sarkar
+                                    {dbProfile?.name || 'SB Sakib Sarkar'}
                                 </span>
                             </h1>
 
                             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-gray-300">
-                                <AboutTyping />
+                                <AboutTyping roles={dbProfile?.role ? dbProfile.role.split('||').map(s => s.trim()) : null} />
                             </h2>
                         </div>
 
@@ -401,13 +403,9 @@ const MyHome = () => {
                         <SkillIcons isVisible={contentVisible} />
 
                         {/* Description */}
-                        <p className={`text-lg sm:text-xl text-gray-400 leading-relaxed max-w-2xl transform transition-all duration-1000 delay-500 ${contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                        <p className={`text-lg sm:text-xl text-gray-400 leading-relaxed max-w-2xl transform transition-all duration-1000 delay-500 whitespace-pre-wrap ${contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                             }`}>
-                            I craft digital experiences with modern technologies. Specialized in building
-                            <span className="text-blue-400 font-semibold"> responsive web applications </span>
-                            using the MERN stack. From concept to deployment, I ensure
-                            <span className="text-purple-400 font-semibold"> quality code </span>
-                            and seamless user experiences.
+                            {dbProfile?.bio || `I craft digital experiences with modern technologies. Specialized in building responsive web applications using the MERN stack. From concept to deployment, I ensure quality code and seamless user experiences.`}
                         </p>
 
                         {/* Enhanced Stats */}
@@ -428,7 +426,7 @@ const MyHome = () => {
                         </div>
 
                         {/* Social Media and Buttons */}
-                        <MediaAndButton isVisible={contentVisible} />
+                        <MediaAndButton isVisible={contentVisible} socialLinks={dbProfile?.socialLinks} resumeUrl={dbProfile?.resumeUrl} />
                     </div>
 
                     {/* Enhanced Image Section */}
@@ -445,8 +443,8 @@ const MyHome = () => {
                                 {/* Image */}
                                 <img
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    src="mypic/sbsakib.jpg"
-                                    alt="SB Sakib Sarkar"
+                                    src="mypic/sakibsarkar.jpeg"
+                                    alt={dbProfile?.name || "SB Sakib Sarkar"}
                                 />
 
                                 {/* Enhanced Overlay */}
